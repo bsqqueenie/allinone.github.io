@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-03-02T02:55:58.000Z">
-<meta property="article:modified_time" content="2022-03-02T05:35:18.121Z">
+<meta property="article:modified_time" content="2022-03-02T05:41:26.679Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta property="article:tag" content="课程">
 <meta property="article:tag" content="C语言">
@@ -209,7 +209,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      139 分钟
+      140 分钟
     </span>
   
 
@@ -1119,7 +1119,7 @@
 </ul>
 <p>下面的程序演示了这两条规则：</p>
 <p><strong>_test2.c</strong> —— 何时使用 &amp;</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    <span class="hljs-type">int</span> age;<br>    <span class="hljs-type">float</span> assets;<br>    <span class="hljs-type">char</span> pets[<span class="hljs-number">30</span>];<span class="hljs-comment">//字符数组，存放字符串</span><br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter you age, assets and you favorite pet.\n&quot;</span>);<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %f&quot;</span>, &amp;age, &amp;assets); <span class="hljs-comment">// 这里要用 &amp;</span><br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>, pets);<span class="hljs-comment">// 字符数组不使用 &amp;</span><br>      <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//scanf 的 &amp; 使用规则</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    <span class="hljs-type">int</span> age;<br>    <span class="hljs-type">float</span> assets;<br>    <span class="hljs-type">char</span> pets[<span class="hljs-number">30</span>];<span class="hljs-comment">//字符数组，存放字符串</span><br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter you age, assets and you favorite pet:\n&quot;</span>);<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %f&quot;</span>, &amp;age, &amp;assets); <span class="hljs-comment">// 这里要用 &amp;  , 字符数组不使用 &amp;</span><br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>, pets);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;your age:%d\n your assets:%f\n your favorite pet:%s\n&quot;</span>,age,assets,pets);<br>      <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 <hr>
 <h4 id="span-class-emoji-alias-warning-style-fallback-src-https-github-githubassets-com-images-icons-emoji-unicode-26a0-png-v8-⚠-span-v2"><span class="emoji" alias="warning" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png?v8">⚠</span></h4>
 <p>初学者在使用 scanf 时，在应该写 &amp; 的时候容易忽略 &amp; ，所以每次使用 scanf 的时候一定要格外小心。通常情况下，必要的地方缺少 &amp; 会让程序崩溃（编译器没有警告），但是也有时候程序并不会崩溃，这时候找 bug 可能会让你头痛。</p>
@@ -1181,10 +1181,10 @@
 <p><img src="assets/16461985026503.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
 <p><strong>格式串中的普通字符</strong></p>
 <ul>
-<li><strong>空白字符</strong>：…scanf 函数格式串中的一个或多个连续的空白字符与输入流中的零个或多个空白字符匹配。</li>
-</ul>
-<p><span class="emoji" alias="star2" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f31f.png?v8">🌟</span> <u>简单说一下就是，格式串中有空格，输入时你可以不写空格或写多个；格式串中有多个空格，输入时你可以只写一个空格。</u></p>
-<ul>
+<li>
+<p><strong>空白字符</strong>：…scanf 函数格式串中的一个或多个连续的空白字符与输入流中的零个或多个空白字符匹配。</p>
+<p><span class="emoji" alias="star2" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f31f.png?v8">🌟</span><u>简单说一下就是，格式串中有空格，输入时你可以不写空格或写多个；格式串中有多个空格，输入时你可以只写一个空格。</u></p>
+</li>
 <li>
 <p><strong>非空白字符</strong>：看个程序就明白了：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>	<br>	<span class="hljs-type">int</span> i, j, k;<br>	<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter a date: &quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d - %d - %d&quot;</span>, &amp;i, &amp;j, &amp;k);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;date: %d - %d - %d&quot;</span>, i, j, k);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
