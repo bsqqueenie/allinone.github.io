@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-03-02T02:55:58.000Z">
-<meta property="article:modified_time" content="2022-03-02T15:46:41.940Z">
+<meta property="article:modified_time" content="2022-03-02T15:50:25.121Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta property="article:tag" content="课程">
 <meta property="article:tag" content="C语言">
@@ -1120,6 +1120,10 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;stdio.h&quot;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">int</span> height,weight, scale;<span class="hljs-comment">//scale:比例</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;请输入您的身高(请输入整数，厘米为单位):\n&quot;</span>);<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;height);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;请输入您的体重(请输入整数，斤为单位):\n&quot;</span>);<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;weight);<br>    scale = height / weight;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;身高与体重的比为：%d\n&quot;</span>, weight, scale);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 <p>我们发现，最终我们屏幕上看到的是引号内的内容。我们可以来看一下输出的内容：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">我的体重是：<span class="hljs-number">160</span>斤<br>身高与体重的比为：<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<p>为什么 <code>180 / 160 == 1 </code>(180 / 160 的值是 1)呢？</p>
+<p>因为 weight 和 height 都整数，它们相除结果取整数（向下取整）。</p>
+<p>如何输出精确的结果呢？</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">float</span> scale;<br>scale =  (<span class="hljs-type">float</span>)height / weight;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;我的体重是：%d斤\n身高与体重的比为：%.3f\n&quot;</span>, weight, scale);<br></code></pre></td></tr></table></figure>
 <hr>
 <h3 id="scanf-函数">scanf() 函数</h3>
 <p><img src="/2022/03/02/c-summary/scanf_function.png" srcset="/img/loading.gif" lazyload alt="scanf_function"></p>
@@ -1227,11 +1231,6 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, &amp;i);<br></code></pre></td></tr></table></figure>
 <p>printf 函数中经常有 <code>\n</code> ，但是如果在 scanf 格式串结尾放一个 \n 通常会引发你预期之外的问题。</p>
 <p>对于 scanf 函数来说，\n 等同于空格，那么 scanf 就会在流中寻找空白字符，但是我们上面说过，scanf 格式串中的空白字符会与 输入流中的零个或多个空白字符匹配。所以当你输入完成后按下回车，这个回车会与 scanf 中的 \n 匹配，之后你无论打多少回车都不会使 scanf 结束，除非你输入一个非空字符，使 scanf 因匹配失败而退出。</p>
-<hr>
-<p>为什么 <code>180 / 160 == 1 </code>(180 / 160 的值是 1)呢？</p>
-<p>因为 weight 和 height 都整数，它们相除结果取整数（向下取整）。</p>
-<p>如何输出精确的结果呢？</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">float</span> scale;<br>scale =  (<span class="hljs-type">float</span>)height / weight;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;我的体重是：%d斤\n身高与体重的比为：%.3f\n&quot;</span>, weight, scale);<br></code></pre></td></tr></table></figure>
 <h3 id="getchar-putchar-函数">getchar() putchar() 函数</h3>
 <hr>
 <blockquote>
