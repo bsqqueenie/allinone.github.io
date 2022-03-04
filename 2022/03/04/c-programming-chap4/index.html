@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-03-04T05:58:41.000Z">
-<meta property="article:modified_time" content="2022-03-04T15:16:11.089Z">
+<meta property="article:modified_time" content="2022-03-04T15:35:59.416Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/tech.jpeg">
@@ -316,7 +316,7 @@
 <p>判等运算符的优先级<strong>低于</strong>关系运算符。例如：</p>
 <p><code>i &lt; j == j &lt; k</code> 等价于：<code>(i &lt; j) == (j &lt; k)</code>，含义是：如果 i &lt; j 和 j &lt; k 同真或同假 这个表达式的结果为真。</p>
 <h4 id="关系运算符优先顺序">关系运算符优先顺序</h4>
-<p><img src="/2022/03/04/c-programming-chap4/WechatIMG1253.jpeg" srcset="/img/loading.gif" lazyload alt="关系运算符优先顺序"></p>
+<p><img src="/2022/03/04/c-programming-chap4/WX20220304-233448.png" srcset="/img/loading.gif" lazyload alt="WX20220304-233448"></p>
 <h3 id="二-逻辑运算符">二 逻辑运算符</h3>
 <blockquote>
 <p><strong>逻辑运算符（logical operator）</strong></p>
@@ -371,7 +371,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(i &gt; k &amp;&amp; i &lt; j)<br></code></pre></td></tr></table></figure>
 <p>为了判定相反的情况，可以写成：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(i &lt;= k || i &gt;= j)<br></code></pre></td></tr></table></figure>
-<p>**例2-1：**程序：为了判定一个数是不是大于零的，如果是，我们就输出提示语，然后让这个数加 1</p>
+<p><strong>例2-1：</strong> 程序：为了判定一个数是不是大于零的，如果是，我们就输出提示语，然后让这个数加 1</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">if</span>(i &gt; <span class="hljs-number">0</span>)&#123;<br>	<span class="hljs-built_in">printf</span>(&quot;是正数\n&quot;);<br>	<span class="hljs-selector-tag">i</span>++;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h4 id="2-else-子句">2. else 子句</h4>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(表达式)<br>    语句;<br><span class="hljs-keyword">else</span> <br>    语句;<br></code></pre></td></tr></table></figure>
