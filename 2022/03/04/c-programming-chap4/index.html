@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-03-04T05:58:41.000Z">
-<meta property="article:modified_time" content="2022-03-04T15:05:29.626Z">
+<meta property="article:modified_time" content="2022-03-04T15:08:54.409Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/tech.jpeg">
@@ -354,6 +354,7 @@
 </ol>
 <p>如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><pre><code class="hljs c">	<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">1</span>;<br><br>	<span class="hljs-keyword">if</span> (i &amp;&amp; i++) &#123;<br>		; <span class="hljs-comment">// 空语句</span><br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i); <span class="hljs-comment">// i 的值没有增加，说明 i++ 没有计算</span><br><br>	<span class="hljs-keyword">if</span> (j || j++) &#123;<br>		;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, j); <span class="hljs-comment">// j 的值没有增加， 说明 j++ 没有计算</span><br><span class="hljs-comment">// 输出：</span><br><span class="hljs-number">0</span><br><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<h4 id="逻辑运算符与关系运算符的优先级排列">逻辑运算符与关系运算符的优先级排列</h4>
 <p><img src="/2022/03/04/c-programming-chap4/WX20220304-224713@2x.png" srcset="/img/loading.gif" lazyload alt="逻辑运算符与关系运算符的优先级排列"></p>
 <p>运算符 ！的优先级和一元正负号优先级<strong>相同</strong>，运算符 &amp;&amp; 和 || 的优先级<strong>低于</strong>判等运算符。</p>
 <p>例如：<code>i &lt; j &amp;&amp; k == m</code> 等价于 <code>(i &lt; j) &amp;&amp; (k == m)</code></p>
