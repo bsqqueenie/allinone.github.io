@@ -19,13 +19,13 @@
     <meta name="description" content="C语言语法基础总结 It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures. [1] 关键概念 1.  位，字节和字  位（bit）： 最小的存储单元，也称比特位。可以存储 0 或 1（或者说，位用于存储“开”或“关”） 字节（byte）： 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言语法基础总结">
-<meta property="og:url" content="http://example.com/2022/03/04/c-summary/index.html">
+<meta property="og:url" content="http://example.com/2022/03/02/c-summary/index.html">
 <meta property="og:site_name" content="TinyWhispery">
 <meta property="og:description" content="C语言语法基础总结 It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures. [1] 关键概念 1.  位，字节和字  位（bit）： 最小的存储单元，也称比特位。可以存储 0 或 1（或者说，位用于存储“开”或“关”） 字节（byte）： 1">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
-<meta property="article:published_time" content="2022-03-04T02:55:58.000Z">
-<meta property="article:modified_time" content="2022-03-04T13:50:51.648Z">
+<meta property="article:published_time" content="2022-03-02T02:55:58.000Z">
+<meta property="article:modified_time" content="2022-03-04T15:53:20.786Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta property="article:tag" content="课程">
 <meta property="article:tag" content="C语言">
@@ -189,8 +189,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-04 10:55" pubdate>
-        2022年3月4日 上午
+      <time datetime="2022-03-02 10:55" pubdate>
+        2022年3月2日 上午
       </time>
     </span>
   
@@ -445,7 +445,7 @@
 <blockquote>
 <p>先定义再使用 e.g int a = 3;</p>
 </blockquote>
-<p><img src="/2022/03/04/c-summary/var_img.png" srcset="/img/loading.gif" lazyload alt="变量图示"></p>
+<p><img src="/2022/03/02/c-summary/var_img.png" srcset="/img/loading.gif" lazyload alt="变量图示"></p>
 <h4 id="整数类型">整数类型</h4>
 <h5 id="有符号整数和无符号整数">有符号整数和无符号整数</h5>
 <blockquote>
@@ -467,7 +467,7 @@
 <hr>
 <p>16位，32位，64位机器的整数类型都各有些不同</p>
 <p><strong>32位机器整数类型</strong><br>
-<img src="/2022/03/04/c-summary/int_data.png" srcset="/img/loading.gif" lazyload alt></p>
+<img src="/2022/03/02/c-summary/int_data.png" srcset="/img/loading.gif" lazyload alt></p>
 <blockquote>
 <p>32位机器上，int 与 long的大小是一样的，都是 4 个字节。<br>
 16位机器上，int 与 short 大小是一样的，都是 2 个字节。<br>
@@ -527,7 +527,7 @@
 <li><code>long double</code>：扩展精度浮点数</li>
 </ul>
 <p>通常我们用到的是 double, float的精度是最低的。<br>
-<img src="/2022/03/04/c-summary/16459722831143.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<img src="/2022/03/02/c-summary/16459722831143.jpg" srcset="/img/loading.gif" lazyload alt></p>
 <h4 id="字符类型">字符类型</h4>
 <hr>
 <p>字符类型（字符型）：<code>char</code> 。</p>
@@ -877,7 +877,7 @@
 <p>除此之外，自增自减运算符也要小心使用。如下例：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">i = <span class="hljs-number">2</span>;<br>j = i * i++;<br></code></pre></td></tr></table></figure>
 <p>你觉得 printf(“%d”,j)的值是什么呢 <span class="emoji" alias="question" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8">❓</span></p>
-<p><img src="/2022/03/04/c-summary/16461962791405.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2022/03/02/c-summary/16461962791405.jpg" srcset="/img/loading.gif" lazyload alt></p>
 <h4 id="6-不同类型数据间的混合运算">6.不同类型数据间的混合运算</h4>
 <p>如果一个运算符两侧的数据类型不同，则先自动进行类型转换，使二者成为同一种类型，然后进行运算。整型、实型、字符型数据间可以进行混合运算。规律为:</p>
 <blockquote>
@@ -888,7 +888,7 @@
 </ol>
 </blockquote>
 <h3 id="三-逻辑运算符">三 逻辑运算符</h3>
-<p><img src="/2022/03/04/c-summary/logical_op.png" srcset="/img/loading.gif" lazyload alt="逻辑运算符运算说明"></p>
+<p><img src="/2022/03/02/c-summary/logical_op.png" srcset="/img/loading.gif" lazyload alt="逻辑运算符运算说明"></p>
 <h4 id="逻辑运算的结果">逻辑运算的结果</h4>
 <p>在编程中，我们一般将零值称为“假”，将非零值称为“真”。逻辑运算的结果也只有“真”和“假”，“真”对应的值为 1，“假”对应的值为 0。</p>
 <ul>
@@ -946,7 +946,7 @@
 </ol>
 </blockquote>
 <h2 id="数据的输入输出">数据的输入输出</h2>
-<p><img src="/2022/03/04/c-summary/input_output.png" srcset="/img/loading.gif" lazyload alt="有关输入输出的概念"></p>
+<p><img src="/2022/03/02/c-summary/input_output.png" srcset="/img/loading.gif" lazyload alt="有关输入输出的概念"></p>
 <h3 id="printf-函数">printf() 函数</h3>
 <p><code>printf()</code>函数打印数据的指令要与待打印数据的类型相匹配。例如，打印整数时使用 <code>%d</code>，打印字符时使用 <code>%c</code> 。这些符号被称为<strong>转换说明</strong>（conversion specification）,它们指定了如何把数据（以2进制形式）转换成可显示的形式。</p>
 <p>例如：</p>
@@ -1060,20 +1060,20 @@
 <p>例 1：</p>
   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-number">123</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-number">-123</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%+d\n&quot;</span>, <span class="hljs-number">123</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%+d\n&quot;</span>, <span class="hljs-number">-123</span>);<br></code></pre></td></tr></table></figure>
 <p>运行结果如下：<br>
-<img src="/2022/03/04/c-summary/16461965490086.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<img src="/2022/03/02/c-summary/16461965490086.jpg" srcset="/img/loading.gif" lazyload alt></p>
 <p>例 2：</p>
   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;% d\n&quot;</span>, <span class="hljs-number">123</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;% d\n&quot;</span>, <span class="hljs-number">-123</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;% +d\n&quot;</span>, <span class="hljs-number">123</span>);<br></code></pre></td></tr></table></figure>
 <p>运行结果如下：<br>
-<img src="/2022/03/04/c-summary/16461966510848.jpg" srcset="/img/loading.gif" lazyload alt></p>
-<p><img src="/2022/03/04/c-summary/16461966314693.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<img src="/2022/03/02/c-summary/16461966510848.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2022/03/02/c-summary/16461966314693.jpg" srcset="/img/loading.gif" lazyload alt></p>
 <p>例 3：</p>
   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%o\n&quot;</span>, <span class="hljs-number">0123</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%x\n&quot;</span>, <span class="hljs-number">0x123</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%#o\n&quot;</span>, <span class="hljs-number">0123</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%#x\n&quot;</span>, <span class="hljs-number">0x123</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%#g\n&quot;</span>, <span class="hljs-number">123.0</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%g\n&quot;</span>, <span class="hljs-number">123.0</span>);<br></code></pre></td></tr></table></figure>
 <p>运行结果如下：</p>
-<p><img src="/2022/03/04/c-summary/16461967325753.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2022/03/02/c-summary/16461967325753.jpg" srcset="/img/loading.gif" lazyload alt></p>
 <p>例 4：</p>
   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%5d\n&quot;</span>, <span class="hljs-number">123</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%05d\n&quot;</span>, <span class="hljs-number">123</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%5.3d\n&quot;</span>, <span class="hljs-number">123</span>);<br></code></pre></td></tr></table></figure>
 <p>运行结果如下：</p>
-<p><img src="/2022/03/04/c-summary/16461967783046.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2022/03/02/c-summary/16461967783046.jpg" srcset="/img/loading.gif" lazyload alt></p>
 <ul>
 <li>
 <p><strong>最小字段宽度</strong>（可选）</p>
@@ -1086,7 +1086,7 @@
 <p>例 5：</p>
   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%5d\n&quot;</span>, <span class="hljs-number">123</span>);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%2d\n&quot;</span>, <span class="hljs-number">123</span>);<br></code></pre></td></tr></table></figure>
 <p>运行结果如下：</p>
-<p><img src="/2022/03/04/c-summary/16461969051459.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2022/03/02/c-summary/16461969051459.jpg" srcset="/img/loading.gif" lazyload alt></p>
 <ul>
 <li>
 <p><strong>精度</strong>（可选项）</p>
@@ -1103,7 +1103,7 @@
 </li>
 </ul>
 <p>运行结果如下：</p>
-<p><img src="/2022/03/04/c-summary/16461971385055.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2022/03/02/c-summary/16461971385055.jpg" srcset="/img/loading.gif" lazyload alt></p>
 <ul>
 <li>
 <p><strong>长度修饰符</strong>（可选）。</p>
@@ -1174,7 +1174,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">float</span> scale;<br>scale =  (<span class="hljs-type">float</span>)height / weight;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;我的体重是：%d斤\n身高与体重的比为：%.3f\n&quot;</span>, weight, scale);<br></code></pre></td></tr></table></figure>
 <hr>
 <h3 id="scanf-函数">scanf() 函数</h3>
-<p><img src="/2022/03/04/c-summary/scanf_function.png" srcset="/img/loading.gif" lazyload alt="scanf_function"></p>
+<p><img src="/2022/03/02/c-summary/scanf_function.png" srcset="/img/loading.gif" lazyload alt="scanf_function"></p>
 <p>scanf() 函数功能:</p>
 <blockquote>
 <p>将从键盘输入的字符转化为“输入控制符”所规定格式的数据，然后存入以输入参数的值为地址的变量中。</p>
@@ -1211,7 +1211,7 @@
 <p><strong>转换说明符</strong> ：<code>%[集合]</code>匹配集合中的任意序列；<code>%[^集合]</code>匹配非集合中的任意序列。<em>例 2</em></p>
 </li>
 </ul>
-<p><img src="/2022/03/04/c-summary/16461982518740.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2022/03/02/c-summary/16461982518740.jpg" srcset="/img/loading.gif" lazyload alt></p>
 <p>例 2：</p>
   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>	<br>	<span class="hljs-type">char</span> str[<span class="hljs-number">10</span>];<span class="hljs-comment">//字符串数组</span><br><br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%[123]&quot;</span>, str);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, str);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">//输入：123456abc123</span><br><span class="hljs-comment">//输出：123</span><br></code></pre></td></tr></table></figure>
   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>	<br>	<span class="hljs-type">char</span> str[<span class="hljs-number">10</span>];<span class="hljs-comment">//字符串数组</span><br><br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%[^123]&quot;</span>, str);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s&quot;</span>, str);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">//输入：abc4123a</span><br><span class="hljs-comment">//输出：abc4</span><br></code></pre></td></tr></table></figure>
@@ -1264,7 +1264,7 @@
 <p>例如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span><br>&#123;<br>	<span class="hljs-type">char</span> s[<span class="hljs-number">10</span>];<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,s);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;s[10]存储的值为：%s\n&quot;</span>,s);<br><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>运行结果如下：<br>
-<img src="/2022/03/04/c-summary/16461985026503.jpg" srcset="/img/loading.gif" lazyload alt></p>
+<img src="/2022/03/02/c-summary/16461985026503.jpg" srcset="/img/loading.gif" lazyload alt></p>
 <p><strong>格式串中的普通字符</strong></p>
 <ul>
 <li>
