@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-03-04T05:58:41.000Z">
-<meta property="article:modified_time" content="2022-03-04T14:36:40.221Z">
+<meta property="article:modified_time" content="2022-03-04T14:54:39.633Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/tech.jpeg">
@@ -198,7 +198,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.2k 字
+      7.1k 字
     </span>
   
 
@@ -250,7 +250,7 @@
 <p>许多编程语言中，类似 <code>i &lt; j</code> 这样的表达式都具有特殊的“布尔”类型或者“逻辑”类型（C++ 的 bool 和 Java 的 boolean）。这样的类型只有两个值，即真（true）和假（false）。</p>
 <p>而在 C 语言中，诸如 <code>i &lt; j</code> 这样的比较会产生整数：0（假）1（真）。</p>
 <p><strong>但是，非 0 的其他数也可以表示 真</strong>。在今天看来，这是 C 语言设计的弊端，它将布尔类型与整型混为一谈，让我们在变成过程中可能稍不小心就会给自己挖一个坑。</p>
-<h4 id="1-关系运算符">1. 关系运算符</h4>
+<h3 id="一-关系运算符">一. 关系运算符</h3>
 <blockquote>
 <p>C 语言的关系运算符（relational operator）和数学上的 <code>&gt;,&lt;,≤，≥</code>相对应，只是用在 C 语言的表达式中时产生的结果是 0 或 1 。</p>
 <p>例如，表达式 10 &lt; 11 的值是 1，11 &lt; 10 的值是 0 。</p>
@@ -286,7 +286,7 @@
 <p>关系运算符都是<strong>左结合</strong>的。</p>
 <p><strong>注意：</strong> 表达式 <code>i &lt; j &lt; k</code> 在 C 语言中是合法的，但是可能不是你所期望的含义。因为 &lt; 运算符是左结合的，所以这个表达式等价于：<code>(i &lt; j) &lt; k</code></p>
 <p>表达式会先检测 i 是否小于 j，然后用比较后产生的结果（1 或 0 ）来和 k 进行比较。这个表达式并不是测试 j 是否位于 i 和 k 之间。（正确的写法是：<code>j &gt; i &amp;&amp; j &lt; k</code>）</p>
-<h4 id="2-判等运算符">2. 判等运算符</h4>
+<h4 id="判等运算符">判等运算符</h4>
 <blockquote>
 <p>**判等运算符(equality operator)：**相等用<code>==</code>表示 。注意不是 <code>=</code> ，<code>=</code>表示赋值。</p>
 </blockquote>
@@ -313,7 +313,7 @@
 <p>和关系运算符一样，判等运算符是<strong>左结合</strong>的，也是产生 0（假） 或 1（真） 作为结果。</p>
 <p>判等运算符的优先级<strong>低于</strong>关系运算符。例如：</p>
 <p><code>i &lt; j == j &lt; k</code> 等价于：<code>(i &lt; j) == (j &lt; k)</code>，含义是：如果 i &lt; j 和 j &lt; k 同真或同假 这个表达式的结果为真。</p>
-<h4 id="3-逻辑运算符">3. 逻辑运算符</h4>
+<h3 id="二-逻辑运算符">二 逻辑运算符</h3>
 <blockquote>
 <p><strong>逻辑运算符（logical operator）</strong></p>
 </blockquote>
@@ -342,19 +342,19 @@
 <p>其实 &amp;&amp; 就是 数学中的 且 ，|| 就是数学的的 或</p>
 <p><img src="/2022/03/04/c-programming-chap4/logical_op.png" srcset="/img/loading.gif" lazyload alt="logical_op"></p>
 <p>逻辑运算符产生的结果仍然是 0 或 1，操作数经常也是 0 或 1，但这不是必需的。逻辑运算符将任何 <strong>非0</strong>值操作数当作真来处理，任何<strong>0</strong>值操作数当作假来处理。</p>
-<ul>
-<li>如果表达式的值为 0，那么 <code>！表达式</code>的结果为 1</li>
-<li>如果 表达式1 和 表达式2 的值都是非零值，那么<code>表达式1 &amp;&amp; 表达式2</code> 的结果为 1</li>
-<li>如果 表达式1 和 表达式2 的值 中的任意一个是（或者两个都是）非零值，那么<code>表达式1 || 表达式2</code> 的结果为 1</li>
-</ul>
-<p>所有其他情况下，这些运算符产生的结果都为 0</p>
-<p><strong>“短路”计算</strong></p>
-<p>&amp;&amp; 和 || 运算符都遵循“短路”原则。也就是说，这些运算符首先计算出左操作数的值，然后计算右操作数；<strong>如果表达式的值可以仅由左操作数推导出来，那么将不计算右操作数的值</strong>。如：</p>
+<p><span class="emoji" alias="collision" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a5.png?v8">💥</span> ❗️ <span class="emoji" alias="exclamation" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8">❗</span> <strong>“短路”计算</strong></p>
+<p>&amp;&amp; 和 || 运算符都遵循“短路”原则。</p>
+<ol>
+<li>逻辑或短路（||）:只要一个为真,或结果就为真,后面的不算了。</li>
+<li>逻辑与短路（&amp;&amp;）:只要有一个为假,结果就为假。如果&amp;&amp;左边的算式结果为假,那么右边的不再运行,直接得出结果为假。</li>
+</ol>
+<p>如：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><pre><code class="hljs c">	<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">1</span>;<br><br>	<span class="hljs-keyword">if</span> (i &amp;&amp; i++) &#123;<br>		; <span class="hljs-comment">// 空语句</span><br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i); <span class="hljs-comment">// i 的值没有增加，说明 i++ 没有计算</span><br><br>	<span class="hljs-keyword">if</span> (j || j++) &#123;<br>		;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, j); <span class="hljs-comment">// j 的值没有增加， 说明 j++ 没有计算</span><br><span class="hljs-comment">// 输出：</span><br><span class="hljs-number">0</span><br><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<p><img src="/2022/03/04/c-programming-chap4/WX20220304-224713@2x.png" srcset="/img/loading.gif" lazyload alt="逻辑运算符与关系运算符的优先级排列"></p>
 <p>运算符 ！的优先级和一元正负号优先级<strong>相同</strong>，运算符 &amp;&amp; 和 || 的优先级<strong>低于</strong>判等运算符。</p>
 <p>例如：<code>i &lt; j &amp;&amp; k == m</code> 等价于 <code>(i &lt; j) &amp;&amp; (k == m)</code></p>
 <p>运算符 ! 是<strong>右结合</strong>的，&amp;&amp; 和 || 是<strong>左结合</strong>的。</p>
-<h4 id="二-if-语句">二 if 语句</h4>
+<h3 id="三-if-语句">三 if 语句</h3>
 <h4 id="1-if">1. if</h4>
 <p>if 语句允许程序通过测试表达式的值从两种选项中选择一种。if 语句的简单格式如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(表达式)&#123;<br>    语句<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -444,7 +444,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">_Bool</span> flag = <span class="hljs-number">5</span>;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%u&quot;</span>, flag);<br><br><span class="hljs-comment">// 输出：</span><br><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
 <p>C99 还提供了一个新的头文件<code>&lt;stdbool.h&gt;</code>，改头提供了 bool 宏，用来代表 _Bool ；还提供了 true 和 false 两个宏，分别代表 1 和 0 。于是可以写：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdbool.h&gt;</span></span><br><br><span class="hljs-type">bool</span> flag;<br>flag = <span class="hljs-literal">true</span>;<br>...<br>flag = <span class="hljs-literal">false</span>;<br></code></pre></td></tr></table></figure>
-<h3 id="三-switch-语句">三 switch 语句</h3>
+<h3 id="四-switch-语句">四 switch 语句</h3>
 <blockquote>
 <p>日常的编程中，常常需要把表达式和一系列值进行比较，从而找出当前匹配的值。</p>
 </blockquote>
