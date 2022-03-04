@@ -1,0 +1,678 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/profile_img/profile_img.jpeg">
+  <link rel="icon" href="/img/profile_img/profile_img.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Shiqi Bai">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="选择语句 It is easier to write an incorrect program than understand a correct one. [1] 目录  [TOC] 选择语句  前面已经讲过C语言的语句主要分为 6 大类。本节我们主要探讨 选择语句：if 语句 和 switch 语句 一 逻辑表达式 包括 if 语句在内的某些 C 语句（while，for 等）都必须测试表达式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高级语言程序设计chap4">
+<meta property="og:url" content="http://example.com/2022/03/04/c-programming-chap4/index.html">
+<meta property="og:site_name" content="TinyWhispery">
+<meta property="og:description" content="选择语句 It is easier to write an incorrect program than understand a correct one. [1] 目录  [TOC] 选择语句  前面已经讲过C语言的语句主要分为 6 大类。本节我们主要探讨 选择语句：if 语句 和 switch 语句 一 逻辑表达式 包括 if 语句在内的某些 C 语句（while，for 等）都必须测试表达式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/tech.jpeg">
+<meta property="article:published_time" content="2022-03-04T05:58:41.000Z">
+<meta property="article:modified_time" content="2022-03-04T13:26:50.480Z">
+<meta property="article:author" content="Shiqi Bai">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/tech.jpeg">
+  
+  
+  <title>高级语言程序设计chap4 - TinyWhispery</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>TinyWhispery</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于我
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/post_banner/img1.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="高级语言程序设计chap4">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-04 13:58" pubdate>
+        2022年3月4日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      61 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">高级语言程序设计chap4</h1>
+            
+            <div class="markdown-body">
+              <h1>选择语句</h1>
+<p><em>It is easier to write an incorrect program than understand a correct one.</em> <sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="写错误的程序比理解正确的程序简单。Epigrams on Programming 编程警句 
+">[1]</span></a></sup></p>
+<h2 id="目录">目录</h2>
+<hr>
+<p>[TOC]</p>
+<h2 id="选择语句">选择语句</h2>
+<hr>
+<p>前面已经讲过C语言的语句主要分为 6 大类。本节我们主要探讨 选择语句：if 语句 和 switch 语句</p>
+<h3 id="一-逻辑表达式">一 逻辑表达式</h3>
+<p>包括 if 语句在内的某些 C 语句（while，for 等）都必须测试表达式的值是“真”还是“假”。</p>
+<p>许多编程语言中，类似 <code>i &lt; j</code> 这样的表达式都具有特殊的“布尔”类型或者“逻辑”类型（C++ 的 bool 和 Java 的 boolean）。这样的类型只有两个值，即真（true）和假（false）。</p>
+<p>而在 C 语言中，诸如 <code>i &lt; j</code> 这样的比较会产生整数：0（假）1（真）。</p>
+<p><strong>但是，非 0 的其他数也可以表示 真</strong>。在今天看来，这是 C 语言设计的弊端，它将布尔类型与整型混为一谈，让我们在变成过程中可能稍不小心就会给自己挖一个坑。</p>
+<h4 id="1-关系运算符">1. 关系运算符</h4>
+<blockquote>
+<p>C 语言的关系运算符（relational operator）和数学上的 <code>&gt;,&lt;,≤，≥</code>相对应，只是用在 C 语言的表达式中时产生的结果是 0 或 1 。</p>
+<p>例如，表达式 10 &lt; 11 的值是 1，11 &lt; 10 的值是 0 。</p>
+</blockquote>
+<p>关系运算符也可以用于比较整数和浮点数，也允许比较不同类型的操作数。如：5.6 &lt; 5 的值为 0 。</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于等于</td>
+</tr>
+</tbody>
+</table>
+<p>关系运算符的优先级<strong>低于</strong>算数运算符。例如：<code>i + j &lt; k - 1</code> 的意思是 <code>(i + j) &lt; (k - 1)</code></p>
+<p>关系运算符都是<strong>左结合</strong>的。</p>
+<p><strong>注意：</strong> 表达式 <code>i &lt; j &lt; k</code> 在 C 语言中是合法的，但是可能不是你所期望的含义。因为 &lt; 运算符是左结合的，所以这个表达式等价于：<code>(i &lt; j) &lt; k</code></p>
+<p>表达式会先检测 i 是否小于 j，然后用比较后产生的结果（1 或 0 ）来和 k 进行比较。这个表达式并不是测试 j 是否位于 i 和 k 之间。（正确的写法是：<code>j &gt; i &amp;&amp; j &lt; k</code>）</p>
+<h4 id="2-判等运算符">2. 判等运算符</h4>
+<blockquote>
+<p>**判等运算符(equality operator)：**相等用<code>==</code>表示 。注意不是 <code>=</code> ，<code>=</code>表示赋值。</p>
+</blockquote>
+<p><strong>注意：</strong></p>
+<p>一定要注意不要将 <code>==</code> 写成 <code>=</code> ，编译器可能会给你报错，但是如果没有，在你查错的时候，注意是不是 <code>==</code> 写错了的问题。</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>==</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>不等于</td>
+</tr>
+</tbody>
+</table>
+<p>和关系运算符一样，判等运算符是<strong>左结合</strong>的，也是产生 0（假） 或 1（真） 作为结果。</p>
+<p>判等运算符的优先级<strong>低于</strong>关系运算符。例如：</p>
+<p><code>i &lt; j == j &lt; k</code> 等价于：<code>(i &lt; j) == (j &lt; k)</code>，含义是：如果 i &lt; j 和 j &lt; k 同真或同假 这个表达式的结果为真。</p>
+<p><strong>利用 关系运算符 和 判等运算符</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs c">(i &gt;= j) + (i == j)<br></code></pre></td></tr></table></figure>
+<p>上面表达式的值为 0，1 或者 2 分别代表 i &lt; j, i &gt; j, i == j</p>
+<h4 id="3-逻辑运算符">3. 逻辑运算符</h4>
+<blockquote>
+<p><strong>逻辑运算符（logical operator）</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>!</td>
+<td>逻辑非（一元运算符）</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>逻辑与（二元运算符）</td>
+</tr>
+<tr>
+<td>||</td>
+<td>逻辑或（二元运算符）</td>
+</tr>
+</tbody>
+</table>
+<p>其实 &amp;&amp; 就是 数学中的 且 ，|| 就是数学的的 或</p>
+<p>逻辑运算符产生的结果仍然是 0 或 1，操作数经常也是 0 或 1，但这不是必需的。逻辑运算符将任何 <strong>非0</strong>值操作数当作真来处理，任何<strong>0</strong>值操作数当作假来处理。</p>
+<ul>
+<li>如果表达式的值为 0，那么 <code>！表达式</code>的结果为 1</li>
+<li>如果 表达式1 和 表达式2 的值都是非零值，那么<code>表达式1 &amp;&amp; 表达式2</code> 的结果为 1</li>
+<li>如果 表达式1 和 表达式2 的值 中的任意一个是（或者两个都是）非零值，那么<code>表达式1 || 表达式2</code> 的结果为 1</li>
+</ul>
+<p>所有其他情况下，这些运算符产生的结果都为 0</p>
+<p><strong>“短路”计算</strong></p>
+<p>&amp;&amp; 和 || 运算符都遵循“短路”原则。也就是说，这些运算符首先计算出左操作数的值，然后计算右操作数；<strong>如果表达式的值可以仅由左操作数推导出来，那么将不计算右操作数的值</strong>。如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c">	<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">1</span>;<br><br>	<span class="hljs-keyword">if</span> (i &amp;&amp; i++) &#123;<br>		; <span class="hljs-comment">// 空语句</span><br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i); <span class="hljs-comment">// i 的值没有增加，说明 i++ 没有计算</span><br><br>	<span class="hljs-keyword">if</span> (j || j++) &#123;<br>		;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, j); <span class="hljs-comment">// j 的值没有增加， 说明 j++ 没有计算</span><br><span class="hljs-comment">// 输出：</span><br><span class="hljs-number">0</span><br><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<p>运算符 ！的优先级和一元正负号优先级<strong>相同</strong>，运算符 &amp;&amp; 和 || 的优先级<strong>低于</strong>判等运算符。</p>
+<p>例如：<code>i &lt; j &amp;&amp; k == m</code> 等价于 <code>(i &lt; j) &amp;&amp; (k == m)</code></p>
+<p>运算符 ! 是<strong>右结合</strong>的，&amp;&amp; 和 || 是<strong>左结合</strong>的。</p>
+<h4 id="二-if-语句">二 if 语句</h4>
+<h4 id="1-if">1. if</h4>
+<p>if 语句允许程序通过测试表达式的值从两种选项中选择一种。if 语句的简单格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(表达式)&#123;<br>    语句<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果语句部分只有一条语句，也可以写成</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(表达式)<br>    语句;<br></code></pre></td></tr></table></figure>
+<p>执行 if 语句时，先计算圆括号内表达式的值。如果表达式的值<strong>非零</strong>（C语言将非零值解释为真值），那么接着执行大括号内的语句。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span>)<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;正数\n&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>为了判定 k &lt; i &lt; j，可以这样写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(i &gt; k &amp;&amp; i &lt; j)<br></code></pre></td></tr></table></figure>
+<p>为了判定相反的情况，可以写成：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(i &lt;= k || i &gt;= j)<br></code></pre></td></tr></table></figure>
+<p>**例2-1：**程序：为了判定一个数是不是大于零的，如果是，我们就输出提示语，然后让这个数加 1</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">if</span>(i &gt; <span class="hljs-number">0</span>)&#123;<br>	<span class="hljs-built_in">printf</span>(&quot;是正数\n&quot;);<br>	<span class="hljs-selector-tag">i</span>++;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="2-else-子句">2. else 子句</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(表达式)<br>    语句;<br><span class="hljs-keyword">else</span> <br>    语句;<br></code></pre></td></tr></table></figure>
+<p>如果是<strong>复合语句</strong>（compound statement），需要加上花括号</p>
+<p><strong>加上花括号是一种好习惯。建议不管是不是复合语句，尽量都加上花括号。</strong></p>
+<p><strong>例2-2</strong>：增加需求：如果这个数不是正数，那么输出提示语，然后让这个数减 1</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span>)&#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;是正数\n&quot;</span>);<br>	i++;<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;不是正数\n&quot;</span>);<br>    i--;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="3-嵌套的-if-语句">3. 嵌套的 if 语句</h4>
+<p><strong>例2-3</strong>：找出 i，j，k 中的最大值，并将其保存到 max 中</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(i &gt; j)&#123;<br>    <span class="hljs-keyword">if</span>(i &gt; k)&#123;<br>        max = i;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        max = k;<br>    &#125;<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-keyword">if</span>(j &gt; k)&#123;<br>        max = j;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        max = k;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="4-级联式-if-语句">4. 级联式 if 语句</h4>
+<blockquote>
+<p>编程时常常需要判定一系列的条件，一旦其中某个条件为真就立刻停止。</p>
+</blockquote>
+<p>如何做到呢？</p>
+<p><strong>例2-4</strong> 程序：判断 n 是大于 0 还是 等于 0 还是小于 0</p>
+<p>使用 if else</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(n &lt; <span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;n &lt; 0&quot;</span>);<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-keyword">if</span>(n == <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;n = 0&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;n &gt; 0&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>使用 else if</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(n &lt; <span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;n &lt; 0&quot;</span>);<br>&#125;<br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n == <span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;n == 0&quot;</span>);<br>&#125;<br><span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;n &gt; 0&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样写可以避免 if else 嵌套，从而提高了书写和理解的难易度。</p>
+<p><strong>级联式 if 语句书写形式：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(表达式)&#123;<br> 	语句;   <br>&#125;<br><span class="hljs-keyword">else</span>(表达式)&#123;<br>    语句;<br>&#125;<br><span class="hljs-keyword">else</span>&#123;<br>    语句;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="5-“悬空-else”问题">5. “悬空 else”问题</h4>
+<p>请看下面的程序，思考 else 与 那个 if 匹配</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(y != <span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">if</span>(x != <span class="hljs-number">0</span>)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.2f&quot;</span>, x / y);<br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: y is zero!&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>如果此时 y = 0, x = 2 会输出什么？</p>
+<p>如果 y = 2, x = 0 会输出什么？</p>
+<p>虽然缩进格式按时 else 属于外层 if，但是 C 语言遵循的规则是<strong>else 子句应该属于离它最近且还未和其他 else 匹配的 if 语句</strong>。</p>
+<p>所以，此例中 else 属于内层的 if 语句。为了避免这种问题，最好的办法就是<strong>加括号</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(y != <span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-keyword">if</span>(x != <span class="hljs-number">0</span>)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.2f&quot;</span>, x / y);<br>&#125;<br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: y is zero!&quot;</span>);<br></code></pre></td></tr></table></figure>
+<h4 id="6-条件表达式">6. 条件表达式</h4>
+<blockquote>
+<p>**条件运算符(conditional operator)：**C 语言运算符中唯一一个三元(ternary)（三个操作数）运算符。</p>
+</blockquote>
+<p>格式：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">[条件表达式]表达式 <span class="hljs-number">1</span> ？ 表达式<span class="hljs-number">2</span> ：表达式<span class="hljs-number">3</span> ;<br></code></pre></td></tr></table></figure>
+<p><strong>例2-6</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(x &gt; <span class="hljs-number">0</span>)&#123;<br>    x++;<br>&#125;<br><span class="hljs-keyword">else</span>&#123;<br>    x--;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>上面的程序我们用条件运算符可以这么写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">x &gt; <span class="hljs-number">0</span> ? x++ : x--;<br></code></pre></td></tr></table></figure>
+<p>判断 k 的值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">i = <span class="hljs-number">1</span>;<br>j = <span class="hljs-number">2</span>;<br>k = i &gt; j ? i : j; <span class="hljs-comment">// k is 2 now</span><br>k = (i &gt;= <span class="hljs-number">0</span> ? i : <span class="hljs-number">0</span>) + j; <span class="hljs-comment">// k is now 3</span><br></code></pre></td></tr></table></figure>
+<p>条件运算符使程序<strong>更短小但也更难以阅读</strong>，所以最好避免使用。然而有的情况会常常使用条件表达式。比如：</p>
+<p>1）判断返回：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">return</span> i &gt; j ? i : j;<br></code></pre></td></tr></table></figure>
+<p>2）printf</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i &gt; j ? i : j);<br></code></pre></td></tr></table></figure>
+<p>条件表达式也普遍应用于某些类型的宏定义中。</p>
+<h4 id="7-布尔值">7. 布尔值</h4>
+<h5 id="C89">C89</h5>
+<p>多年以来，C语言一直缺乏适当的布尔类型。</p>
+<p>一种解决方法是，先声明一个 int 型变量，让后将其赋值为 0 或 1：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> flag;<br>flag = <span class="hljs-number">0</span>; <span class="hljs-comment">// 表示 flag 为 false</span><br>...<br>flag = <span class="hljs-number">1</span>; <span class="hljs-comment">// 表示 flag 为 true </span><br></code></pre></td></tr></table></figure>
+<p>虽然这种方法可行，但是对于程序的可读性没有多大贡献，因为没有明确的表示 flag 的赋值只能是布尔型，并没有明确指出 0 和 1就是表示真和假。</p>
+<p>为了使得程序更加便于理解，C89 程序员通常使用 TRUE 和 FALSE 这样的名字定义宏：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> TRUE 1</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> FALSE 0</span><br></code></pre></td></tr></table></figure>
+<p>现在对 flag 的赋值就有了更加自然的形式：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">flag = FALSE;<br>...<br>flag = TRUE;<br></code></pre></td></tr></table></figure>
+<p>为了判定 flag 是否为真，可以用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(flag == TRUE)&#123;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>或者只写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(flag)&#123;<br>    ...<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>为了发扬这一思想，我们可以进一步定义一个用作布尔类型的宏：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> BOOL int;</span><br></code></pre></td></tr></table></figure>
+<p>声明布尔类型变量时可以用 BOOL 替代 int</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">BOOL flag;<br></code></pre></td></tr></table></figure>
+<p>现在我们就非常清楚了：flag 不是一个普通的整型变量，而是表示布尔条件。（当然编译器还是将 flag 当作 int 类型的变量。）</p>
+<h5 id="C99">C99</h5>
+<p>C99 中提供了 _Bool 类型：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">_Bool</span> flag;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><code>_Bool</code>是无符号整型。但是和一般的整形不同，_Bool 只能被赋值为 0 或 1 。一般来说，向 _Bool 类型变量中储存非零值会导致变量赋值为 1 。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">_Bool</span> flag = <span class="hljs-number">5</span>;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%u&quot;</span>, flag);<br><br><span class="hljs-comment">// 输出：</span><br><span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<p>C99 还提供了一个新的头文件<code>&lt;stdbool.h&gt;</code>，改头提供了 bool 宏，用来代表 _Bool ；还提供了 true 和 false 两个宏，分别代表 1 和 0 。于是可以写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdbool.h&gt;</span></span><br><br><span class="hljs-type">bool</span> flag;<br>flag = <span class="hljs-literal">true</span>;<br>...<br>flag = <span class="hljs-literal">false</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="三-switch-语句">三 switch 语句</h3>
+<blockquote>
+<p>日常的编程中，常常需要把表达式和一系列值进行比较，从而找出当前匹配的值。</p>
+</blockquote>
+<p>使用级联式 if 语句可以达到这个目的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(grade == <span class="hljs-number">4</span>)<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Excellent&quot;</span>);<br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(grade == <span class="hljs-number">3</span>)<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Good&quot;</span>);<br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(grade == <span class="hljs-number">2</span>)<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Average&quot;</span>);<br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(grade == <span class="hljs-number">1</span>)<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Poor&quot;</span>);<br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(grade == <span class="hljs-number">0</span>)<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Failing&quot;</span>);<br><span class="hljs-keyword">else</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Illegal grade&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>C 语言提供了 switch 语句作为这类级联式 if 语句的替换。使用 switch 语句改写上面的程序：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">switch</span>(grade)&#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Excellent&quot;</span>); <br>        	<span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Good&quot;</span>);<br>    		<span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Average&quot;</span>);<br>        	<span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Poor&quot;</span>);<br>        	<span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Failing&quot;</span>);<br>        	<span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">default</span>:<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Illegal grade&quot;</span>);<br>        	<span class="hljs-keyword">break</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>switch 语句常用格式：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">switch</span>(控制表达式)&#123;<br>    <span class="hljs-keyword">case</span> 常量表达式 : 语句<br>        ...<br>    <span class="hljs-keyword">case</span> 常量表达式 : 语句<br>    <span class="hljs-keyword">default</span> : 语句<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>**控制表达式：**控制表达式只能用：整型，字符型的变量（C 语言把字符当成整数来处理），不能用浮点数 和 字符串。</p>
+</li>
+<li>
+<p>**分支标号：**每一个分支的开头都有一个标号，格式如下：</p>
+<p><code>case 常量表达式；</code></p>
+<p>常量表达式(constant expression): 必须是<strong>整数或字符型</strong>，不能包含<strong>变量和函数调用</strong>。</p>
+<p>5 是常量表达式，5 + 10 也是常量表达式；但是 10 + n 不是常量表达式（除非 n 是表示常量的宏）。</p>
+</li>
+<li>
+<p>**语句：**每个分支标号后可以跟任意数量的语句。不需要用花括号把这些语句括起来。每组语句的最后一条通常是 break 语句。</p>
+</li>
+<li>
+<p><strong>break 的作用：</strong> 本节后面会详细讨论。</p>
+</li>
+<li>
+<p><strong>default 语句的作用：</strong> 控制表达式的值和所有的标号语句都不匹配的话，会执行 default 后面的语句。（default ：默认的意思）</p>
+</li>
+</ul>
+<p>C 语言<strong>不允许有重复的分支标号，但对分支的顺序没有要求</strong>，特别是 default 分支不一定要放在最后。</p>
+<p>case 后<strong>只可以跟随一个常量表达式</strong>。但是，<strong>多个分支标号可以放置在同一组语句前面</strong> 。如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">switch</span>(grade)&#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <br>    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Passing&quot;</span>);<br>        	<span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Failing&quot;</span>);<br>        	<span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">default</span>:<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Illegal grade&quot;</span>);<br>        	<span class="hljs-keyword">break</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>为了节省空间，可以将拥有相同语句的分支标号放在同一行：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">switch</span>(grade)&#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:  <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <br>        	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Passing&quot;</span>);<br>        	<span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Failing&quot;</span>);<br>        	<span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">default</span>:<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Illegal grade&quot;</span>);<br>        	<span class="hljs-keyword">break</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>switch 语句<strong>不要求一定有 default 分支</strong>。如果 default 不存在，而且控制表达式的值和所有的标号语句都不匹配的话，控制会直接传给 switch 语句后面的语句。</p>
+<h4 id="break-语句的作用">break 语句的作用</h4>
+<p>break 会使程序“跳出” switch 语句，继续执行 switch 后面的语句。</p>
+<p>对控制表达式求值的时，控制会跳转到与 switch 表达式相匹配的分支标号处。分支标号只是说明 switch 内部位置的标记。在执行完分支的最后一句后，程序控制“向下跳转”到下一个分支的第一条语句上，而忽略下一个分支的分支标号。如果没有 break 语句（或者其他某种跳转语句），控制将会从一个分支继续到下一个分支。思考下面的 switch 语句：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">switch</span>(grade)&#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Excellent&quot;</span>); <br>    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Good&quot;</span>);<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Average&quot;</span>);<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Poor&quot;</span>);<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Failing&quot;</span>);<br>    <span class="hljs-keyword">default</span>:<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Illegal grade&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果 grade 的值为 3，那么显示的信息是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">GoodAveragePoorFailingIllegal grade<br></code></pre></td></tr></table></figure>
+<p>**注意：**忘记 break 是编程时常见的错误。虽然有时候会故意忽略 break 以便多个分支共享代码，但是通常情况下省略 break 是因为忽略。</p>
+<p>如果有需要，<strong>明确指出</strong>故意省略 break 语句是一个好主意：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">switch</span>(grade)&#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:  <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <br>			num_passing++;<br>        <span class="hljs-comment">// Fail Through </span><br>    <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: total_grades++;<br>        	<span class="hljs-keyword">break</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>最然 switch 语句最后一个分支不需要 break 语句，但是通常还是会加上一个 break 语句在那里，<strong>以防止将来增加分支时出现“丢失” break 的问题</strong>。</p>
+<p><em>参考资料：《C Primer Plus》《C语言程序设计：现代方法》</em></p>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>写错误的程序比理解正确的程序简单。<a target="_blank" rel="noopener" href="https://epigrams-on-programming.readthedocs.io/zh_CN/latest/epigrams.html">Epigrams on Programming 编程警句 </a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>学如逆水行舟，不进则退</span></a>
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
