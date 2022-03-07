@@ -1,0 +1,651 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/profile_img/profile_img.jpeg">
+  <link rel="icon" href="/img/profile_img/profile_img.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Shiqi Bai">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures. [1] 循环 本章将介绍 C 语言的重复语句（迭代语句），这种语句允许用户设置循环。 循环（loop）时重复的执行其他语句（循环体）的一种语句。在 C 语言中，每个循环都有自己的控制表达式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c-programming-chap5">
+<meta property="og:url" content="http://example.com/2022/03/07/c-programming-chap5/index.html">
+<meta property="og:site_name" content="TinyWhispery">
+<meta property="og:description" content="It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures. [1] 循环 本章将介绍 C 语言的重复语句（迭代语句），这种语句允许用户设置循环。 循环（loop）时重复的执行其他语句（循环体）的一种语句。在 C 语言中，每个循环都有自己的控制表达式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/tech.jpeg">
+<meta property="article:published_time" content="2022-03-07T07:13:21.000Z">
+<meta property="article:modified_time" content="2022-03-07T07:14:51.133Z">
+<meta property="article:author" content="Shiqi Bai">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/tech.jpeg">
+  
+  
+  <title>c-programming-chap5 - TinyWhispery</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>TinyWhispery</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于我
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/post_banner/bg1.jpeg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="c-programming-chap5">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-07 15:13" pubdate>
+        2022年3月7日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      11k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      94 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">c-programming-chap5</h1>
+            
+            <div class="markdown-body">
+              <p><em>It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures.</em> <sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="用100个函数操作一个数据结构比仅用10个函数但是操作10个不同的数据结构要好。Epigrams on Programming 编程警句 
+">[1]</span></a></sup></p>
+<h2 id="循环">循环</h2>
+<p>本章将介绍 C 语言的<strong>重复语句（迭代语句）</strong>，这种语句允许用户设置循环。</p>
+<p><strong>循环</strong>（loop）时重复的执行其他语句（<strong>循环体</strong>）的一种语句。在 C 语言中，每个循环都有自己的<strong>控制表达式</strong>（controlling expression）。循环每执行一次，都要对控制表达式求值。如果表达式为真（表达式的值非 0），那么循环继续执行；否则，退出循环。</p>
+<p>C 提供了三种迭代语句：</p>
+<ul>
+<li><strong>while</strong> 语句</li>
+<li><strong>do</strong> 语句（do while 语句）</li>
+<li><strong>for</strong> 语句</li>
+</ul>
+<p>其中以 for 语句最为常用。</p>
+<p>本节后面还会讨论循环相关的 C 语言特性。如 <strong>break，continue，goto</strong>语句</p>
+<h3 id="一-while-语句">一  while 语句</h3>
+<h4 id="1-while-的基本用法">1. while 的基本用法</h4>
+<p>while 的基本格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">while</span>(控制表达式)&#123;<br>    循环体<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>执行 while 语句时，首先计算控制表达式的值。如果值不为零，那么执行循环体，接着再次判定 控制表达式的真值，如果为真，再次执行循环体。直到控制表达式的真值为假，才会结束 while 语句。</p>
+</blockquote>
+<p><img src="https://hairrrrr.github.io/assets/2020-11-30-7.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>**例1-1：**倒计数程序</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> i = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">while</span>(i &gt; <span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>    i--;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>关于这个例子，我们可以对 while 进行深度思考：</p>
+<ul>
+<li>
+<p><strong>while 循环终止时，控制表达式的值一定为假</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> i = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">while</span>(i &gt; <span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>    i--;<br>&#125;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, i); <span class="hljs-comment">// i is now 0</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>可能根本不执行 while 循环体</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span>(i &gt; <span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>    i--;<br>&#125;<br><span class="hljs-comment">// Nothing is printed.</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>while 语句常有多种写法</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> i = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">while</span>(i &gt; <span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i--); <span class="hljs-comment">// 将 i-- 写在 printf 内，简化循环</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="2-无限循环">2. 无限循环</h4>
+<blockquote>
+<p>如果控制表达式的值始终非零，while 循环将无法终止。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>除非循环体内有控制循环的语句（break，return，goto）或者调用了导致程序终止的函数，非则上面的循环永远不会结束。</p>
+<h4 id="程序-1：显示平方表">程序 1：显示平方表</h4>
+<p>现编写一个程序来显示平方表。首先程序提示用户输入一个数 n，然后显示出 n 行的输出，每行包含 一个 1 ~ n 的数及其平方值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">This program prints a table of squares.<br>Enter number of entries in table: <span class="hljs-number">5</span><br>    <span class="hljs-number">1</span>	<span class="hljs-number">1</span><br>    <span class="hljs-number">2</span>	<span class="hljs-number">4</span><br>    <span class="hljs-number">3</span>	<span class="hljs-number">9</span><br>    <span class="hljs-number">4</span>	<span class="hljs-number">16</span><br>    <span class="hljs-number">5</span>	<span class="hljs-number">25</span><br></code></pre></td></tr></table></figure>
+<p>参考答案：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    <span class="hljs-type">int</span> n;<br>    <span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;This program prints a table of squares.\n&quot;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter number of entries in table: &quot;</span>);<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    <br>    <span class="hljs-keyword">while</span>(i &lt;= n)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t%d\t%d\n&quot;</span>, i, i * i);<br>        i++;<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="程序-2：数列求和">程序 2：数列求和</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">This program sums a series of integers.<br>Enter <span class="hljs-title function_">integers</span><span class="hljs-params">(<span class="hljs-number">0</span> to <span class="hljs-built_in">terminate</span>)</span>:8 23 71 5 0<br>The sum is:107<br></code></pre></td></tr></table></figure>
+<p>参考答案：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    <span class="hljs-type">int</span> n, sum = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;This program sums a series of integers.\n&quot;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter integers(0 to terminate): &quot;</span>);<br>    <br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n); <br>    <span class="hljs-keyword">while</span>(n != <span class="hljs-number">0</span>)&#123;<br>        sum += n;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n); <br>    &#125;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The sum is:%d\n&quot;</span>, sum);<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>我写的，仅供参考：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    <span class="hljs-type">int</span> n, sum = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;This program sums a series of integers.\n&quot;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter integers(0 to terminate): &quot;</span>);<br>    <br>    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n) &amp;&amp; n)&#123;<br>        sum += n;<br>    &#125;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The sum is:%d\n&quot;</span>, sum);<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>或者 while 循环可以这样写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> n = <span class="hljs-number">1</span>, sum = <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">while</span>(n != <span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    sum += n;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="二-do-语句">二  do 语句</h3>
+<h4 id="1-do-while-基本用法">1. do while 基本用法</h4>
+<blockquote>
+<p>do 语句 和 while 语句其实本质上是相同的。只不过 do 语句<strong>至少会执行一次</strong>循环体。</p>
+</blockquote>
+<p><strong>基本形式：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">do</span>&#123;<br>    循环体<br>&#125;<span class="hljs-keyword">while</span>(控制表达式);<br></code></pre></td></tr></table></figure>
+<p><img src="https://hairrrrr.github.io/assets/2020-11-30-8.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><strong>例2-1</strong>倒计数程序</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> i = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">do</span>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>    i--;<br>&#125;<span class="hljs-keyword">while</span>(i &gt; <span class="hljs-number">0</span>);<br></code></pre></td></tr></table></figure>
+<p>顺便一提，<strong>do 语句最好都加上花括号</strong>。</p>
+<p>虽然 do while 没有 while 语句使用的那么多，但是前者对于<strong>至少需要执行一次</strong>的循环来说是十分方便的。</p>
+<h4 id="程序-3：编写一个程序计算用户输入的整数的位数">程序 3：编写一个程序计算用户输入的整数的位数</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">Enter a integer: <span class="hljs-number">60</span><br>The number has <span class="hljs-number">2</span> digit(s).<br></code></pre></td></tr></table></figure>
+<p>参考答案：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    <span class="hljs-type">int</span> n, count = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter a nonnegative integer:&quot;</span>);<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    <br>    <span class="hljs-keyword">do</span>&#123;<br>        count++;<br>        n /= <span class="hljs-number">10</span>; <span class="hljs-comment">// 除法 10 的次数就是 n 的位数</span><br>    &#125;<span class="hljs-keyword">while</span>(n != <span class="hljs-number">0</span>);<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The number has %d digit(s).\n&quot;</span>, count);<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果我们用 while 循环:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">while</span>(n != <span class="hljs-number">0</span>)&#123;<br>    count++;<br>    n /= <span class="hljs-number">10</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果你输入的是 0 ，这个循环会直接退出。这不符合我们的预期，0 也是整数啊，而且它有 1 位数。</p>
+<h3 id="三-for-循环">三 for 循环</h3>
+<p>现在开始介绍 C 语言最后一种循环，也是<strong>功能最强大</strong>的一种循环：for 语句。它是我们用的最多的一种循环，一定要熟练掌握。</p>
+<h4 id="1-for-语句的基本用法">1. for 语句的基本用法</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(表达式<span class="hljs-number">1</span>; 表达式<span class="hljs-number">2</span>; 表达式<span class="hljs-number">3</span>)&#123;<br>    循环体<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>例3-1</strong> 倒计数程序</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(i = <span class="hljs-number">10</span>; i &gt; <span class="hljs-number">0</span>; i--)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在执行上面这个 for 语句时，i 先初始化为 10；然后判定 i 是否大于 0 ；因为结果为真，执行循环体；然后对变量 i 进行自减操作；然后再次判断 i 是否大于 0 … 直到最后一次 i 自减后，i &gt; 0 不成立了，退出循环。</p>
+<p><img src="https://hairrrrr.github.io/assets/2020-11-30-9.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>for 循环如果我们用 while 语句 也可以模拟：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">i = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">while</span>(i &gt; <span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>    i--;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>抽象一下即为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">表达式<span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span>(表达式<span class="hljs-number">2</span>)&#123;<br>    循环体;<br>    表达式<span class="hljs-number">3</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>for 循环中的 <code>i--</code> 可以写成 <code>--i</code> 吗？</strong></p>
+<p>即：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(i = <span class="hljs-number">10</span>; i &gt; <span class="hljs-number">0</span>; --i)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这种做法对循环没有任何影响。<code>i++</code> 和 <code>i--</code> 在 for 循环的 表达式3 中是完全等价的。</p>
+<h4 id="2-在-for-语句中省略表达式">2. 在 for 语句中省略表达式</h4>
+<p><strong>1.省略第一个表达式</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">i = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">for</span>(; i &gt; <span class="hljs-number">0</span>; --i)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<ul>
+<li>省略第一个表达式相当于不初始化 i</li>
+<li>即便 第一个表达式省略了，也<strong>不能省略后面的分号</strong></li>
+</ul>
+<p><strong>2. 省略第三个表达式</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(i = <span class="hljs-number">10</span>; i &gt; <span class="hljs-number">0</span>;)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>     --i<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>3. 省略第一个和第三个表达式</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">i = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">for</span>(; i &gt; <span class="hljs-number">0</span>; )&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>    --i<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>是不是很像我们的 while 语句？</p>
+<p><strong>4. 省略第二个表达式</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span> (; ;) &#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>省去控制表达式，<strong>默认为真</strong>，因此 for 语句会不断循环下去。</p>
+<p>它相当于：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="3-C99-中的-for-语句">3. C99 中的 for 语句</h4>
+<p>C99 中第一个表达式可以替换成一个声明：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++)&#123;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>变量 i 不需要在该句之前进行声明。事实上，如果变量 i 在之前已经声明了，这个语句会创建一个新的 i 且该值<strong>仅用于循环内</strong>。（新的 i 会覆盖之前的 i 。for 语句的花括号相当于一个块，新 i 的作用域仅在这个块内。）</p>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br>	<br>	<span class="hljs-type">int</span> i = <span class="hljs-number">20</span>;<br><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>	&#125;<br>	<span class="hljs-comment">// 循环结束新的 i 应该等于 10</span><br>    <br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-number">0</span><br><span class="hljs-number">1</span><br><span class="hljs-number">2</span><br><span class="hljs-number">3</span><br><span class="hljs-number">4</span><br><span class="hljs-number">5</span><br><span class="hljs-number">6</span><br><span class="hljs-number">7</span><br><span class="hljs-number">8</span><br><span class="hljs-number">9</span><br><span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
+<p>最后输出的 20 不符合我们的预期，这说明了一个问题：</p>
+<p>旧的 i 始终存在，只不过在 for 语句内，新的 i 相对旧的 i 显“显性”（可以用高中生物的基因来理解一下；或者你就理解为覆盖，但是新的 i 开辟的是新的内存，它不会真的覆盖旧的 i ）。</p>
+<p>for 语句声明的变量不可以在循环外访问（生存期仅在 for 语句内）。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>&#125;<br><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<span class="hljs-comment">// 在这里编译会报错，&quot;未定义标识符 i&quot;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>让 for 语句声明自己的循环控制变量通常是一个好办法：这样<strong>方便且程序的可读性更强</strong>，但是如果<strong>在 for 循环退出后还要使用该变量</strong>，则只能使用以前的 for 语句格式。</p>
+</blockquote>
+<p>另外，for 语句可以<strong>声明多个变量</strong>，只要它们的<strong>类型相同</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">10</span>; i &lt; j; i++, j--)&#123;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="4-逗号表达式">4. 逗号表达式</h4>
+<blockquote>
+<p>逗号表达式（comma expression）</p>
+</blockquote>
+<h5 id="基本用法">基本用法</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">表达式<span class="hljs-number">1</span>,表达式<span class="hljs-number">2</span>,表达式<span class="hljs-number">3</span>,...,表达式n;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>逗号表达式的优先级低于所有其他运算符</li>
+<li>从左向右依次执行：先计算表达式1，然后是表达式2 …</li>
+<li>最终整个逗号表达式的值为最后一个表达式的值</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">i = <span class="hljs-number">1</span>, j = <span class="hljs-number">2</span>, k = i + j;<br></code></pre></td></tr></table></figure>
+<p>相当于是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">((i = <span class="hljs-number">1</span>), (j = <span class="hljs-number">2</span>), (k = i + j));<br></code></pre></td></tr></table></figure>
+<p>整个逗号表达式的值为 k = i + j 的值，也就是 3</p>
+<h5 id="应用">应用</h5>
+<p>假如在进入 for 语句时希望初始化两个变量</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">sum = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt;= N; i++)&#123;<br>    sum += i;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>改写为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(sum = <span class="hljs-number">0</span>, i = <span class="hljs-number">1</span>; i &lt;= N; i++)&#123;<br>    sum += i;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="程序-4：显示平方表（for）">程序 4：显示平方表（for）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    <span class="hljs-type">int</span> n;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;This program prints a table of squares.\n&quot;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter number of entries in table: &quot;</span>);<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    <br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t%d\t%d\n&quot;</span>, i, i * i);<br>    &#125;<br>  <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="程序-5：不用乘法，实现程序“显示平方表”">程序 5：不用乘法，实现程序“显示平方表”</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    <span class="hljs-type">int</span> n;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;This program prints a table of squares.\n&quot;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter number of entries in table: &quot;</span>);<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    <br>  <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>, square = <span class="hljs-number">1</span>, odd = <span class="hljs-number">3</span>; i &lt;= n; i++)&#123;<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\t%d\t%d\n&quot;</span>, i, square);<br>      square += odd;<br>      odd += <span class="hljs-number">2</span>;<br>  &#125;<br>  <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="四-退出循环">四 退出循环</h3>
+<p>有时，<strong>循环还没有结束，但我们需要在循环的中间设置退出点</strong>，甚至可能需要对循环设置多个退出点。break 语句可以满足这种需求。</p>
+<p>continue 语句用来跳过某次迭代的部分内容，但是不会跳过整个循环。</p>
+<p>goto 语句允许程序从一条语句直接跳到另一条语句。</p>
+<h4 id="1-break-语句">1. break 语句</h4>
+<blockquote>
+<p>break 语句不但可以把程序控制从 switch 语句中转移出来；还可以用于跳出 while，do while，和 for 循环。</p>
+</blockquote>
+<h4 id="程序-6：判断素数">程序 6：判断素数</h4>
+<p>假如要编写一个程序判断 n 是否为素数。我们计划是编写一个 for 语句用 n 除以 2 到 n - 1 之间的所有数。一旦发现有约数就跳出循环，没不需要继续尝试下去。循环终止后，可以用 if 判断循环是提前终止（不是素数）还是正常终止（是素数）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    <span class="hljs-type">int</span> n, i;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter a number:&quot;</span>);<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    <br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">2</span>; i &lt; n; i++)&#123;<br>        <span class="hljs-keyword">if</span>(n % i == <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>    <br>  	<span class="hljs-keyword">if</span>(i &lt; n)&#123;<br>          <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d is not a prime\n&quot;</span>, n);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>          <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d is a prime\n&quot;</span>, n);<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="程序-7：程序2-重写">程序 7：程序2 重写</h4>
+<p>程序 2 中，要求我们当用户输入 0 时，结束求和。我们用很多中方法去实现了，我们可以用 break 语句让程序的意图更加直观。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    <span class="hljs-type">int</span> n, sum = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;This program sums a series of integers.\n&quot;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter integers(0 to terminate): &quot;</span>);<br>    <br>    <br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n); <br>        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            sum += n;<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The sum is:%d\n&quot;</span>, sum);<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>一个 break 只能跳出一个循环</strong>，如果循环嵌套，那么可能需要多个 break 才能从里层的循环跳出。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> i;<br><span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">10</span>; i++)&#123;<br>        <span class="hljs-keyword">if</span>(i == <span class="hljs-number">5</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>运行一下这个程序，发现，屏幕上一直在输出 5，说明外层的循环没有跳出。</p>
+<h4 id="2-continue-语句">2. continue 语句</h4>
+<blockquote>
+<p>break 语句刚好将程序控制转移到循环体的<strong>末尾之后</strong>；而 continue 语句刚好将程序控制转移到循环体<strong>末尾之前</strong>。</p>
+</blockquote>
+<p>break 语句会跳出循环；而 continue 语句会将程序控制留在循环体之内。</p>
+<p>其实 continue 的作用就是跳过本次循环点剩下内容，重新开始下一轮循环。</p>
+<h4 id="程序-8：计算奇数和">程序 8：计算奇数和</h4>
+<p>编写一个程序。先提示用户输入一个数 n，然后将 1 ~ n 的所有奇数相加，然后输出最终的和</p>
+<p><strong>不使用 continue</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    <span class="hljs-type">int</span> n, sum = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter a number:&quot;</span>);<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    <br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;<br>        <span class="hljs-keyword">if</span>(i % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>)&#123;<br>            sum += i;<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Sum of odds is :%d\n&quot;</span>, sum);<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>使用 continue</strong></p>
+<p>只需要改变 for 循环即可</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;=n; i++)&#123;<br>    <span class="hljs-keyword">if</span>(i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">continue</span>;<br>    &#125;<br>    sum += i;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="3-goto-语句">3. goto 语句</h4>
+<blockquote>
+<p>break 和 continue 语句都是跳转语句：它们可以把控制从程序的一个位置转移到另一个位置。然而，这两者都是受限制的。</p>
+<p>goto 语句则可以跳转到函数中任何有标号的语句处。（C99 增加了一条限制：goto 不能用于绕过<em>变长数组</em>（后面的章节会讲）的声明。）</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">标识符：语句;<br><span class="hljs-keyword">goto</span> 标识符;<br></code></pre></td></tr></table></figure>
+<h4 id="程序：程序-6-重写">程序：程序 6 重写</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    <span class="hljs-type">int</span> n, i;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter a number:&quot;</span>);<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>    <br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">2</span>; i &lt; n; i++)&#123;<br>        <span class="hljs-keyword">if</span>(n % i == <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">goto</span> done;<br>        &#125;<br>    &#125;<br>    done:<br>  	<span class="hljs-keyword">if</span>(i &lt; n)&#123;<br>          <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d is not a prime\n&quot;</span>, n);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>          <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d is a prime\n&quot;</span>, n);<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>goto 语句在早期的编程语言中很常见，但是日常 C 语言编程却很少使用它了。break，continue，return 语句（本质上都是受限制的goto 语句）和 exit 函数足以应付大多数需要使用 goto 的情况。</p>
+<p>而且 goto 语句<strong>不建议滥用，能不用就不用</strong>，因为 goto 语句可以打乱程序原本的执行顺序，这大大降低了程序的可读性，提高了改错成本。（这里程序圆是有切身体会的，大一 做C语言的课设的时候，那时候对 C 掌握的并不是很好。我在一个函数内大量的使用 goto 语句，导致我最后都不知道我的 goto 跳到哪里了。）</p>
+<p>但是 goto 语句偶尔还是有用的，比如上面的例子：循环嵌套的情况，使用goto 语句就很好跳出多重循环了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> i;<br><span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">10</span>; i++)&#123;<br>        <span class="hljs-keyword">if</span>(i == <span class="hljs-number">5</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>            <span class="hljs-keyword">goto</span> find;<br>        &#125;<br>    &#125;<br>&#125;<br>find:<br></code></pre></td></tr></table></figure>
+<h4 id="程序：账薄结算">程序：账薄结算</h4>
+<p>这个程序帮你理解一种简单的交互式程序设计，我们可以通过这种方式设计菜单。</p>
+<p>题目：</p>
+<p>开发一个程序用来维护账簿的余额。程序将为用户提供选择菜单：清空余额账户，向账户存钱，从账户取钱，显示当前余额，退出程序。选项用 0，1，2，3，4表示。程序的会话类似这样：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">**** ACME checkbook-balancing program ****<br>Comands: <span class="hljs-number">0</span> = clear, <span class="hljs-number">1</span> = credit, <span class="hljs-number">2</span> = debit, <span class="hljs-number">3</span> = balance, <span class="hljs-number">4</span> = <span class="hljs-built_in">exit</span><br><br>Enter command: <span class="hljs-number">1</span><br>Enter amount of credit: <span class="hljs-number">1042.56</span><br>Enter command: <span class="hljs-number">2</span><br>Enter amount of debit : <span class="hljs-number">133.56</span><br>Enter command: <span class="hljs-number">3</span><br>Current balance: <span class="hljs-number">909</span><br>Ener command: <span class="hljs-number">4</span><br>Goodbye~<br></code></pre></td></tr></table></figure>
+<p>参考程序：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> &#123;<br><br>	<span class="hljs-type">double</span> balance = <span class="hljs-number">0</span>; <span class="hljs-comment">// 余额</span><br>	<span class="hljs-type">double</span> credit, debit;<br><br>	<span class="hljs-comment">// 菜单，形式可以自己设计，尽量美观一点嘛，不过不用纠结这种界面，不要舍本逐末。</span><br><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**** ACME checkbook-balancing program ****\n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;     Comands:                             \n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;             0 = clear                    \n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;             1 = credit                   \n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;             2 = debit                    \n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;             3 = balance                  \n&quot;</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;             4 = exit                     \n&quot;</span>);<br><br>	<span class="hljs-comment">// 题目中已经规定了这些功能用 0，1，2，3，4 代替，其实是想让我们用 switch</span><br>	<span class="hljs-comment">// 如果你想用 if else 也完全 ok</span><br><br>	<span class="hljs-comment">// 死循环让用户可以重复选择</span><br>	<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>		<span class="hljs-type">int</span> choice;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter command: &quot;</span>);<br>		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;choice);<br>		<br>		<span class="hljs-keyword">switch</span> (choice) &#123;<br>					<br>					<span class="hljs-comment">// 清除账户是一种很“危险”的举动，可以让用户确认一次</span><br><br>			<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Are you sure to clear your balance?\n&quot;</span>);<br>					<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;1 = yes, 0 = no\n&quot;</span>);<br>					<span class="hljs-type">int</span> isClear;<br>					<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;isClear);<br>					<span class="hljs-keyword">if</span> (isClear == <span class="hljs-number">1</span>) &#123;<br>						balance = <span class="hljs-number">0</span>;<br>						<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;clear successfully!\n&quot;</span>);<br>					&#125;					<br>					<span class="hljs-keyword">break</span>;<br>			<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter amount of credit: &quot;</span>);<br>					<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lf&quot;</span>, &amp;credit);<br>					balance += credit;<br>					<span class="hljs-keyword">break</span>;<br>			<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Enter amount of debit : &quot;</span>);<br>					<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lf&quot;</span>, &amp;debit);<br>					balance -= debit;<br>					<span class="hljs-keyword">break</span>;<br><br>			<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Current balance: %.2f\n&quot;</span>, balance);<br>					<span class="hljs-keyword">break</span>;<br>					<br>			<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Are you sure to quit?\n&quot;</span>);<br>					<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;1 = yes, 0 = no\n&quot;</span>);<br>					<span class="hljs-type">int</span> isQuit;<br>					<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;isQuit);<br>					<span class="hljs-keyword">if</span> (isQuit == <span class="hljs-number">1</span>) &#123;<br>						<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Goodbye~\n&quot;</span>);<br>						<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>					&#125;<br>					<span class="hljs-keyword">else</span> &#123;<br>						<span class="hljs-keyword">break</span>;<br>					&#125;<br>			<span class="hljs-keyword">default</span>: <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Illeagl option!\n&quot;</span>);<br>					 <span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="五-空语句">五 空语句</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">i = <span class="hljs-number">0</span>; ; j = <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+<p>第二个语句就是一个空语句：<strong>除了末尾的分号，什么符号也没有。</strong></p>
+<p>空语句主要有一个好处：<strong>编写空循环体的循环。</strong></p>
+<p>判断素数的循环我们可以这样改写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(d = <span class="hljs-number">2</span>; d &lt;= n &amp;&amp; n % d != <span class="hljs-number">0</span>; d++) <br>    ;<br></code></pre></td></tr></table></figure>
+<p>注意不要写成：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(d = <span class="hljs-number">2</span>; d &lt;= n &amp;&amp; n % d != <span class="hljs-number">0</span>; d++) ;<br></code></pre></td></tr></table></figure>
+<p><strong>程序员习惯将空语句单独放在一行</strong>，否则，一般人阅读程序时可能会混淆后面的语句是否是其循环体。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(d = <span class="hljs-number">2</span>; d &lt;= n &amp;&amp; n % d != <span class="hljs-number">0</span>; d++) ;<br><span class="hljs-keyword">if</span>(d &lt; n)<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d is divisible by %d&quot;</span>, n, d);<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>一般情况下，将普通循环转化为带空循环体的语句<strong>不会提高效率</strong>，但是会让程序更加简洁。</p>
+<p>但是在一些情况下，可能带空循环体的循环会更加高效。如：读取字符数据时（后面会讲）。</p>
+</blockquote>
+<h4 id="空语句可能会造成的情况">空语句可能会造成的情况</h4>
+<p><strong>1.if 语句</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span>(d == <span class="hljs-number">0</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error: division by zero\n&quot;</span>);<br></code></pre></td></tr></table></figure>
+<p>如果输入的 d 不是 0，后面的这条消息一样会被打印。</p>
+<p><strong>2.while 语句</strong></p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">i = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">while</span>(i &gt; <span class="hljs-number">0</span>);&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>    i--;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>程序会进入死循环，因为 while 没有循环体，而 i 的的值不会减小。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">i = <span class="hljs-number">11</span>;<br><span class="hljs-keyword">while</span>(--i &gt; <span class="hljs-number">0</span>);&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br>    i--;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>循环终止，但是花括号内的语句只被执行一次。</p>
+<p>输出：0</p>
+<p><strong>3. for 语句</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(i = <span class="hljs-number">10</span>; i &gt; <span class="hljs-number">0</span>; i--);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, i);<br></code></pre></td></tr></table></figure>
+<p>printf 语句被执行一次</p>
+<p>输出：0</p>
+<p><em>参考资料：《C Primer Plus》《C语言程序设计：现代方法》</em></p>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>用100个函数操作一个数据结构比仅用10个函数但是操作10个不同的数据结构要好。<a target="_blank" rel="noopener" href="https://epigrams-on-programming.readthedocs.io/zh_CN/latest/epigrams.html">Epigrams on Programming 编程警句 </a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>学如逆水行舟，不进则退</span></a>
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
