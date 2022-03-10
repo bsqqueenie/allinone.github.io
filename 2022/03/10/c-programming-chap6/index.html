@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-03-10T01:46:53.000Z">
-<meta property="article:modified_time" content="2022-03-10T02:17:12.157Z">
+<meta property="article:modified_time" content="2022-03-10T02:22:41.430Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/tech.jpeg">
@@ -284,7 +284,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">i = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span>(i &lt; N)<br>    a[i] = b[i++]; <span class="hljs-comment">// 访问并修改 i 的值，会导致未定义行为</span><br></code></pre></td></tr></table></figure>
 <p>将自增自减从下标中移走即可：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; N; i++)&#123;<br>    a[i] = b[i];<br>&#125;<br></code></pre></td></tr></table></figure>
-<h4 id="程序：数列反向">程序：数列反向</h4>
+<h4 id="程序示例">程序示例</h4>
 <h5 id="示例1-要求录入一串数据，然后按反向顺序输出这些数：">示例1. 要求录入一串数据，然后按反向顺序输出这些数：</h5>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">Enter <span class="hljs-number">10</span> numbers: <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span><br>In reverse order: <span class="hljs-number">5</span> <span class="hljs-number">4</span> <span class="hljs-number">3</span> <span class="hljs-number">2</span> <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
 <p>参考程序：</p>
