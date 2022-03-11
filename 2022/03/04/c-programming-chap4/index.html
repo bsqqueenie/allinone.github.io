@@ -16,16 +16,16 @@
   <meta name="author" content="Shiqi Bai">
   <meta name="keywords" content="">
   
-    <meta name="description" content="选择结构程序设计 It is easier to write an incorrect program than understand a correct one. [1]  选择结构示例 求解二元一次方程  解题思路:  首先要知道求方程式的根的方法。由数学知识已知: 如果b2-4ac≥0，则一元二次方程有两个实根：𝑥1&#x3D;(−𝑏+√(𝑏2−4𝑎𝑐))&#x2F;2𝑎，𝑥2&#x3D;(−𝑏−√(𝑏">
+    <meta name="description" content="选择结构程序设计 It is easier to write an incorrect program than understand a correct one. [1]  选择结构示例 求解一元二次方程  解题思路:  首先要知道求方程式的根的方法。由数学知识已知: 如果b2-4ac≥0，则一元二次方程有两个实根：𝑥1&#x3D;(−𝑏+√(𝑏2−4𝑎𝑐))&#x2F;2𝑎，𝑥2&#x3D;(−𝑏−√(𝑏">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c-programming-chap4">
 <meta property="og:url" content="http://example.com/2022/03/04/c-programming-chap4/index.html">
 <meta property="og:site_name" content="TinyWhispery">
-<meta property="og:description" content="选择结构程序设计 It is easier to write an incorrect program than understand a correct one. [1]  选择结构示例 求解二元一次方程  解题思路:  首先要知道求方程式的根的方法。由数学知识已知: 如果b2-4ac≥0，则一元二次方程有两个实根：𝑥1&#x3D;(−𝑏+√(𝑏2−4𝑎𝑐))&#x2F;2𝑎，𝑥2&#x3D;(−𝑏−√(𝑏">
+<meta property="og:description" content="选择结构程序设计 It is easier to write an incorrect program than understand a correct one. [1]  选择结构示例 求解一元二次方程  解题思路:  首先要知道求方程式的根的方法。由数学知识已知: 如果b2-4ac≥0，则一元二次方程有两个实根：𝑥1&#x3D;(−𝑏+√(𝑏2−4𝑎𝑐))&#x2F;2𝑎，𝑥2&#x3D;(−𝑏−√(𝑏">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-03-04T05:58:41.000Z">
-<meta property="article:modified_time" content="2022-03-10T10:34:20.859Z">
+<meta property="article:modified_time" content="2022-03-11T03:17:25.398Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/tech.jpeg">
@@ -244,12 +244,12 @@
 ">[1]</span></a></sup></p>
 <p><img src="/2022/03/04/c-programming-chap4/if_switch.png" srcset="/img/loading.gif" lazyload alt="if_switch"></p>
 <h2 id="选择结构示例">选择结构示例</h2>
-<h3 id="求解二元一次方程">求解二元一次方程</h3>
+<h3 id="求解一元二次方程">求解一元二次方程</h3>
 <blockquote>
 <p>解题思路:  首先要知道求方程式的根的方法。由数学知识已知: 如果b2-4ac≥0，则一元二次方程有两个实根：𝑥1=(−𝑏+√(𝑏<sup>2−4𝑎𝑐))/2𝑎，𝑥2=(−𝑏−√(𝑏</sup>2−4𝑎𝑐))/2𝑎，将分式分为两项：p=(−𝑏)/2𝑎，q=√(𝑏^2−4𝑎𝑐)/2𝑎，则x1=p+q，x2=p-q，有了这些式子，只要知道a,b,c的值，就能顺利地求出方程的两个根。</p>
 </blockquote>
 <blockquote>
-<p>在上述程序中进行改进。题目要求解得ax2+bx+c=0方程的根。由键盘输入a,b,c。假设a,b,c的值任意，并不保证b2-4ac≥0。需要在程序中进行判别，如果b2-4ac≥0，就计算并输出方程的两个实根，如果b2-4ac&lt;0，就输出“此方程无实根”的信息。</p>
+<p>在上述程序中进行改进。题目要求解得ax^2+bx+c=0方程的根。由键盘输入a,b,c。假设a,b,c的值任意，并不保证b2-4ac≥0。需要在程序中进行判别，如果b2-4ac≥0，就计算并输出方程的两个实根，如果b2-4ac&lt;0，就输出“此方程无实根”的信息。</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><pre><code class="hljs c"><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;math.h&gt;</span>  <span class="hljs-comment">// sqrt函数在此头文件中定义</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">int</span> a, b, c;<br>    <span class="hljs-type">double</span> delta;<br>    <span class="hljs-type">double</span> x1, x2;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入a, b, c(a不为0，数据间以空格隔开)：&quot;</span>); <span class="hljs-comment">// 1 3 -14</span><br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c);<br>    delta = b * b - <span class="hljs-number">4</span> * a * c;<br>    <span class="hljs-keyword">if</span>(delta &gt;= <span class="hljs-number">0</span>)<br>    &#123;<br>        x1 = (-b + <span class="hljs-built_in">sqrt</span>( delta ))/(<span class="hljs-number">2.0</span> * a);<br>        x2 = (-b - <span class="hljs-built_in">sqrt</span>( delta ))/(<span class="hljs-number">2.0</span> * a);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%.3f %.3f\n&quot;</span>,x1,x2 );<br>        <span class="hljs-type">int</span> bp_check = x1;<br>        <span class="hljs-keyword">return</span> bp_check;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;方程无实根。\n&quot;</span>);    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
 <h2 id="选择语句">选择语句</h2>
@@ -668,6 +668,48 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
 
 
 
