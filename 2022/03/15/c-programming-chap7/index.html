@@ -16,16 +16,16 @@
   <meta name="author" content="Shiqi Bai">
   <meta name="keywords" content="">
   
-    <meta name="description" content="If you have a procedure with 10 parameters, you probably missed some. [1] 函数  零 前言 函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。 我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 main 函数的构成以及各部分的功能">
+    <meta name="description" content="If you have a procedure with 10 parameters, you probably missed some. [1] 函数 函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。 我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 main 函数的构成以及各部分的功能。但我们刚开">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c-programming-chap7">
 <meta property="og:url" content="http://example.com/2022/03/15/c-programming-chap7/index.html">
 <meta property="og:site_name" content="TinyWhispery">
-<meta property="og:description" content="If you have a procedure with 10 parameters, you probably missed some. [1] 函数  零 前言 函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。 我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 main 函数的构成以及各部分的功能">
+<meta property="og:description" content="If you have a procedure with 10 parameters, you probably missed some. [1] 函数 函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。 我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 main 函数的构成以及各部分的功能。但我们刚开">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-03-15T02:16:46.000Z">
-<meta property="article:modified_time" content="2022-03-15T02:21:34.087Z">
+<meta property="article:modified_time" content="2022-03-15T02:26:02.861Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/tech.jpeg">
@@ -242,8 +242,6 @@
               <p><em>If you have a procedure with 10 parameters, you probably missed some.</em> <sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="如果你写了一个需要10个参数的函数，你或许还漏了什么。Epigrams on Programming 编程警句 
 ">[1]</span></a></sup></p>
 <h2 id="函数">函数</h2>
-<hr>
-<h3 id="零-前言">零 前言</h3>
 <p>函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。</p>
 <p>我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 main 函数的构成以及各部分的功能。但我们刚开始学编程，对函数一定不能有一个比较深刻的认识。这一节，我将带领大家走进函数，仔细推敲品味函数。从这一节开始，使用函数的思想将会伴随我们今后的编程生涯。</p>
 <p>一个程序可以实现很多复杂的功能，然而如果将所有的功能写在一个 main 函数中，显然是不科学的。大型程序的代码肯定不是几十行的事情，如果这样做，会让你在写代码和修改 bug 时崩溃。退一步说，对于一个项目来说，肯定时多人合作共同编写，都写在 main 函数内，就很僵硬了。</p>
