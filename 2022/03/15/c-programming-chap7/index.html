@@ -16,16 +16,16 @@
   <meta name="author" content="Shiqi Bai">
   <meta name="keywords" content="">
   
-    <meta name="description" content="If you have a procedure with 10 parameters, you probably missed some. [1] [TOC] 函数 why functions? 函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。 我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 mai">
+    <meta name="description" content="If you have a procedure with 10 parameters, you probably missed some. [1] 函数 why functions? 函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。 我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 main 函数的构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c-programming-chap7">
 <meta property="og:url" content="http://example.com/2022/03/15/c-programming-chap7/index.html">
 <meta property="og:site_name" content="TinyWhispery">
-<meta property="og:description" content="If you have a procedure with 10 parameters, you probably missed some. [1] [TOC] 函数 why functions? 函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。 我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 mai">
+<meta property="og:description" content="If you have a procedure with 10 parameters, you probably missed some. [1] 函数 why functions? 函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。 我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 main 函数的构">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-03-15T02:16:46.000Z">
-<meta property="article:modified_time" content="2022-04-01T14:15:38.382Z">
+<meta property="article:modified_time" content="2022-04-01T14:23:52.114Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/tech.jpeg">
@@ -198,7 +198,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.3k 字
+      7.1k 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      61 分钟
+      59 分钟
     </span>
   
 
@@ -241,7 +241,6 @@
             <div class="markdown-body">
               <p><em>If you have a procedure with 10 parameters, you probably missed some.</em> <sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="如果你写了一个需要10个参数的函数，你或许还漏了什么。Epigrams on Programming 编程警句 
 ">[1]</span></a></sup></p>
-<p>[TOC]</p>
 <h2 id="函数">函数</h2>
 <h3 id="why-functions">why functions?</h3>
 <p>函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。</p>
@@ -261,7 +260,14 @@
 <h5 id="③-显示双关语">③ 显示双关语</h5>
 <p>不是每个函数都有参数：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">print_pun</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;To C or not to C: that is a question\n&quot;</span>);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    print_pun();<br>   <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h4 id="2-函数的返回值">2.函数的返回值</h4>
+<h4 id="2-函数定义">2. 函数定义</h4>
+<h5 id="无参函数">无参函数</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">返回类型 函数名()&#123;<br>    声明<br>    语句<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="有参函数">有参函数</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">返回类型 函数名(形式参数)&#123;<br>    声明<br>    语句<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="空函数">空函数</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">返回类型 函数名()&#123;<br>    <span class="hljs-comment">//为空即可</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="函数的返回值">函数的返回值</h5>
 <p>(1) <strong>函数的返回值是通过函数中的return语句获得的</strong><br>
 一个函数中可以有一个以上的return语句，执行到哪一个return语句，哪一个return语句就起作用。return语句后面的括号可以不要，如“return z;”与“return(z);”等价。return后面的值可以是一个表达式。</p>
 <p>(2) <strong>函数值的类型</strong><br>
@@ -270,23 +276,6 @@
 如果函数值的类型和return语句中表达式的值不一致，则以函数类型为准。对数值型数据，可以自动进行类型转换。即函数类型决定返回值的类型。</p>
 <p>(4) <strong>对于不带回值的函数，应当用定义函数为“void类型”（或称“空类型”）</strong><br>
 这样，系统就保证不使函数带回任何值，即禁止在调用函数中使用被调用函数的返回值。此时在函数体中不得出现return语句。</p>
-<h4 id="3-函数定义">3. 函数定义</h4>
-<h5 id="无参函数">无参函数</h5>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">返回类型 函数名()&#123;<br>    声明<br>    语句<br>&#125;<br></code></pre></td></tr></table></figure>
-<h5 id="有参函数">有参函数</h5>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">返回类型 函数名(形式参数)&#123;<br>    声明<br>    语句<br>&#125;<br></code></pre></td></tr></table></figure>
-<h5 id="空函数">空函数</h5>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">返回类型 函数名()&#123;<br>    <span class="hljs-comment">//为空即可</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<h5 id="返回类型">返回类型</h5>
-<p>函数的返回类型是函数返回值的类型。</p>
-<ul>
-<li>函数<strong>不能返回数组</strong></li>
-<li>返回类型是<strong>void</strong>表示<strong>没有</strong>返回值</li>
-<li>如果省略返回值，C89 会<strong>假设函数返回的是 int 类型</strong>；C99 中这是不合法的。</li>
-</ul>
-<p>一些程序员喜欢将返回类型放在函数名的<strong>上边</strong>：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">double</span><br><span class="hljs-title function_">average</span><span class="hljs-params">(<span class="hljs-type">double</span> x, <span class="hljs-type">double</span> y)</span>&#123;<br>    <span class="hljs-keyword">return</span> (x + y) / <span class="hljs-number">2</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>如果<strong>返回类型很长</strong>，比如 <code>unsigned long int</code> 类型，那么这样写是非常有用的。</p>
 <h5 id="形参（形式参数）">形参（形式参数）</h5>
 <blockquote>
 <p>在函数定义中出现的参数可以看做是一个占位符，它没有数据，只能等到函数被调用时接收传递进来的数据，所以称为形式参数，简称形参。</p>
@@ -409,7 +398,8 @@
 <p>上面的程序也可以简化为：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">fact</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span>&#123;<br>    <span class="hljs-keyword">return</span> n &lt;= <span class="hljs-number">1</span> ? <span class="hljs-number">1</span> : n * fact(n - <span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><strong>注意：</strong> <code>n &lt;= 1</code> 就是终止条件，为了放置无限递归，所有的递归都应该有终止条件。</p>
-<p>如果你能理解下面两个程序，那么当前阶段的递归问题已经难不倒你了。</p>
+<h4 id="实例1">实例1</h4>
+<p><img src="http://c.biancheng.net/uploads/allimg/190103/1310025941-0.gif" srcset="/img/loading.gif" lazyload alt="阶乘 n! 的计算公式"></p>
 <p><em>参考资料：《C语言程序设计：现代方法》</em></p>
 <section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>如果你写了一个需要10个参数的函数，你或许还漏了什么。<a target="_blank" rel="noopener" href="https://epigrams-on-programming.readthedocs.io/zh_CN/latest/epigrams.html">Epigrams on Programming 编程警句 </a>
 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
