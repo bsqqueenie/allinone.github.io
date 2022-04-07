@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-04-07T08:06:56.000Z">
-<meta property="article:modified_time" content="2022-04-07T11:14:44.865Z">
+<meta property="article:modified_time" content="2022-04-07T14:29:31.122Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/tech.jpeg">
@@ -198,7 +198,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.1k 字
+      6.9k 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      43 分钟
+      58 分钟
     </span>
   
 
@@ -314,7 +314,21 @@
 <p>不要将 <code>*q = *p</code> 和 <code>q = p</code> 搞混，前者是将 p 指向的对象的值（变量 i 的值）赋值给 q 指向的对象（变量 j）中。</p>
 <p><img src="https://hairrrrr.github.io/assets/2020-11-30-17.PNG" srcset="/img/loading.gif" lazyload alt></p>
 <h4 id="4-指针作为参数">4.指针作为参数</h4>
-<h5 id="程序：找出数组中的最大元素和最小元素">程序：找出数组中的最大元素和最小元素</h5>
+<p>函数的调用可以（而且只可以）得到一个返回值（即函数值），而使用指针变量作参数，可以得到多个变化了的值。如果不用指针变量是难以做到这一点的。要善于利用<strong>指针法</strong>。</p>
+<hr>
+<blockquote>
+<p>如果想通过函数调用得到n个要改变的值，可以这样做:</p>
+</blockquote>
+<ol>
+<li>在主调函数中设n个变量，用n个指针变量指向它们；</li>
+<li>设计一个函数（自定义），有n个指针形参。在这个函数中改变这n个形参的值；</li>
+<li>在主调函数中调用这个函数，在调用时将这n个指针变量作实参，将它们的值，也就是相关变量的地址传给该函数的形参；</li>
+<li>在执行该函数的过程中，通过形参指针变量，改变它们所指向的n个变量的值；</li>
+<li>主调函数中就可以使用这些改变了值的变量。</li>
+</ol>
+<h5 id="程序1：对输入的两个整数按大小顺序输出。">程序1：对输入的两个整数按大小顺序输出。</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;	<span class="hljs-type">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> *p1,<span class="hljs-type">int</span> *p2)</span>;<br>	<span class="hljs-type">int</span> a,b;<br>	<span class="hljs-type">int</span> *pointer_1,*pointer_2;	<span class="hljs-comment">//pointer_1,pointer_2是int *型变量</span><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;please enter two integer numbers:&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d,%d&quot;</span>,&amp;a,&amp;b);<br>	pointer_1=&amp;a;<br>	pointer_2=&amp;b;<br>	<span class="hljs-keyword">if</span>(a&lt;b) swap(pointer_1,pointer_2);<br>	<span class="hljs-comment">//调用swap函数，用指针变量作实参</span><br>   	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;max=%d,min=%d\n&quot;</span>,*pointer_1,*pointer_2);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> *p1,<span class="hljs-type">int</span> *p2)</span> 	<span class="hljs-comment">//形参是指针变量</span><br>&#123;	<span class="hljs-type">int</span> *p;<br>	p=p1;				<span class="hljs-comment">//下面3行交换p1和p2的指向</span><br>	p1=p2;<br>	p2=p;<br>&#125;<br> <br><br></code></pre></td></tr></table></figure>
+<h5 id="程序2：找出数组中的最大元素和最小元素">程序2：找出数组中的最大元素和最小元素</h5>
 <p>与程序的交互如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">Enter <span class="hljs-number">5</span> numbers:<span class="hljs-number">9</span> <span class="hljs-number">5</span> <span class="hljs-number">2</span> <span class="hljs-number">7</span> <span class="hljs-number">8</span><br>Largest: <span class="hljs-number">9</span><br>Smallest: <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
 <p>参考程序：</p>
@@ -374,8 +388,39 @@
 <p>第(1)和第(2)种方法执行效率是相同的。C编译系统是将a[i]转换为*(a+i)处理的，即先计算元素地址。因此用第(1)和第(2)种方法找数组元素费时较多。<br>
 第(3)种方法比第(1)、第(2)种方法快，用指针变量直接指向元素，不必每次都重新计算地址，像p++这样的自加操作是比较快的。这种有规律地改变地址值(p++)能大大提高执行效率。</p>
 </blockquote>
+<h4 id="注意事项">注意事项</h4>
+<blockquote>
+<p>用下标法比较直观，能直接知道是第几个元素。适合初学者使用。<br>
+用地址法或指针变量的方法不直观，难以很快地判断出当前处理的是哪一个元素。单用指针变量的方法进行控制，可使程序简洁、高效。</p>
+</blockquote>
+<p>在使用指针变量指向数组元素时，有以下几个问题要注意:<br>
+(1) 可以通过改变指针变量的值指向不同的元素。<br>
+如果不用p变化的方法而用数组名a变化的方法（例如，用a++）行不行呢？</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">for</span>(p=a;a&lt;(p+<span class="hljs-number">10</span>);a++)<br><span class="hljs-built_in">printf</span>(″%d″,*a); <span class="hljs-comment">// 错误 ❎</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>因为数组名a代表数组首元素的地址，它是一个指针型常量，它的值在程序运行期间是固定不变的。既然a是常量，所以a++是无法实现的。</p>
+</blockquote>
+<p>(2) 要注意指针变量的当前值。</p>
+<h4 id="自学教材P233-例8-7">自学教材P233 例8.7</h4>
 <h3 id="四-指针与字符串">四 指针与字符串</h3>
-<p><em>参考资料：《C语言程序设计：现代方法》</em></p>
+<h4 id="1-字符串的引用方式">1.字符串的引用方式</h4>
+<ol>
+<li>用字符数组存放一个字符串，可以通过数组名和下标引用字符串中一个字符，也可以通过数组名和格式声明<code>%s</code>输出该字符串。</li>
+<li>用字符指针变量指向一个字符串常量，通过字符指针变量引用字符串常量。</li>
+</ol>
+<h5 id="字符型指针声明、赋值">字符型指针声明、赋值</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> *<span class="hljs-built_in">string</span>=<span class="hljs-string">&quot;I love China!&quot;</span>; <br><br><span class="hljs-comment">// or</span><br><br><span class="hljs-type">char</span> *<span class="hljs-built_in">string</span>;		<span class="hljs-comment">//定义一个char *型变量</span><br><span class="hljs-built_in">string</span>=″I love China!″;<br><span class="hljs-comment">//把字符串第1个元素的地址赋给字符指针变量string</span><br><br><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>string被定义为一个指针变量，基类型为字符型。它只能指向一个字符类型数据，而不能同时指向多个字符数据，更不是把″I love China!″这些字符存放到string中（指针变量只能存放地址），也不是把字符串赋给*string。只是把″I love China!″的第1个字符的地址赋给指针变量string。</p>
+</blockquote>
+<p>可以对指针变量进行再赋值，如:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">string</span>=″I am a student.″; 	<span class="hljs-comment">//对指针变量string重新赋值</span><br></code></pre></td></tr></table></figure>
+<p>可以通过字符指针变量输出它所指向的字符串，如:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">printf</span>(″%s\n″,<span class="hljs-built_in">string</span>);	<span class="hljs-comment">//%s可对字符串进行整体的输入输出</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>%s是输出字符串时所用的格式符，在输出项中给出字符指针变量名string，则系统会输出string所指向的字符串第1个字符，然后自动使string加1，使之指向下一个字符，再输出该字符……如此直到遇到字符串结束标志′\0′为止。注意，在内存中，字符串的最后被自动加了一个′\0′。</p>
+</blockquote>
+<p><em>参考资料：《C语言程序设计：现代方法》、《C语言程序设计（第五版）》</em></p>
 <section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>如果两个人用低级语言写同一个程序，它们显然不会相同。<a target="_blank" rel="noopener" href="https://epigrams-on-programming.readthedocs.io/zh_CN/latest/epigrams.html">Epigrams on Programming 编程警句 </a>
 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </div>
