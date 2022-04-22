@@ -16,16 +16,16 @@
   <meta name="author" content="Shiqi Bai">
   <meta name="keywords" content="">
   
-    <meta name="description" content="[TOC] 一 结构变量 前面我们说过数组有两个重要特性：  数组所有的元素具有相同的数据类型 选择数组元素需要指明元素的位置（下标）  结构和数组有很大不同。结构的元素（C 语言中的说法是成员）可以具有不同类型。而且每个结构成员都有名字，访问结构体成员需要指明结构成员的名字而不是位置。 在一些编程语言中，经常把结构体称为记录（record），把结构体的成员称为字段（field）。 1. 结构变量">
+    <meta name="description" content="结构&amp;联合&amp;枚举 A program without a loop and a structured variable isn’t worth writing. [^1] [TOC] 一 结构变量 前面我们说过数组有两个重要特性：  数组所有的元素具有相同的数据类型 选择数组元素需要指明元素的位置（下标）  结构和数组有很大不同。结构的元素（C 语言中的说法是成员）可以具有不同类型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c-programming-chap9">
 <meta property="og:url" content="http://example.com/2022/04/22/c-programming-chap9/index.html">
 <meta property="og:site_name" content="TinyWhispery">
-<meta property="og:description" content="[TOC] 一 结构变量 前面我们说过数组有两个重要特性：  数组所有的元素具有相同的数据类型 选择数组元素需要指明元素的位置（下标）  结构和数组有很大不同。结构的元素（C 语言中的说法是成员）可以具有不同类型。而且每个结构成员都有名字，访问结构体成员需要指明结构成员的名字而不是位置。 在一些编程语言中，经常把结构体称为记录（record），把结构体的成员称为字段（field）。 1. 结构变量">
+<meta property="og:description" content="结构&amp;联合&amp;枚举 A program without a loop and a structured variable isn’t worth writing. [^1] [TOC] 一 结构变量 前面我们说过数组有两个重要特性：  数组所有的元素具有相同的数据类型 选择数组元素需要指明元素的位置（下标）  结构和数组有很大不同。结构的元素（C 语言中的说法是成员）可以具有不同类型">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-04-22T02:27:37.000Z">
-<meta property="article:modified_time" content="2022-04-22T03:26:33.637Z">
+<meta property="article:modified_time" content="2022-04-22T03:32:37.832Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/tech.jpeg">
@@ -198,7 +198,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4k 字
+      4.1k 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      34 分钟
+      35 分钟
     </span>
   
 
@@ -239,7 +239,9 @@
             <h1 style="display: none">c-programming-chap9</h1>
             
             <div class="markdown-body">
-              <p>[TOC]</p>
+              <h2 id="结构-联合-枚举">结构&amp;联合&amp;枚举</h2>
+<p><em>A program without a loop and a structured variable isn’t worth writing.</em> [^1]</p>
+<p>[TOC]</p>
 <h3 id="一-结构变量">一 结构变量</h3>
 <p>前面我们说过数组有两个重要特性：</p>
 <ul>
