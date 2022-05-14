@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-03-10T01:46:53.000Z">
-<meta property="article:modified_time" content="2022-03-26T02:33:08.745Z">
+<meta property="article:modified_time" content="2022-05-14T00:56:02.204Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/tech.jpeg">
@@ -461,9 +461,9 @@ a[0][0][0] → a[0][0][1] → a[0][0][2] → a[0][0][3] → a[0][1][0] → a[0][
 <p>strcat() 的返回值为 arrayName1 的地址。</p>
 </blockquote>
 <p>下面是一个简单的演示：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">char</span> str1[<span class="hljs-number">100</span>]=<span class="hljs-string">&quot;The URL is &quot;</span>;<br>    <span class="hljs-type">char</span> str2[<span class="hljs-number">60</span>];<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Input a URL: &quot;</span>);<br>    gets(str2);<br>    <span class="hljs-built_in">strcat</span>(str1, str2);<br>    <span class="hljs-built_in">puts</span>(str1);<br>   <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">char</span> str1[<span class="hljs-number">30</span>]=&#123;<span class="hljs-string">&quot;People′s Republic of &quot;</span>&#125;;<br>    <span class="hljs-type">char</span> str2[]=&#123;<span class="hljs-string">&quot;China&quot;</span>&#125;;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输出的结果是：%s&quot;</span>, <span class="hljs-built_in">strcat</span>(str1, str2));<br><br>   <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 <p>运行结果：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">Input a URL: bsqqueenie.github.io↙<br>bsqqueenie.github.io<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">输出的结果是：People<span class="hljs-number">&#x27;</span>s Republic of China<br></code></pre></td></tr></table></figure>
 <h6 id="字符串复制函数-strcpy">字符串复制函数 strcpy()</h6>
 <p><code>strcpy</code> 是 string copy 的缩写，意思是字符串复制，也即将字符串从一个地方复制到另外一个地方，语法格式为：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">strcpy</span>(arrayName1, arrayName2);<br></code></pre></td></tr></table></figure>
@@ -490,7 +490,7 @@ a[0][0][0] → a[0][0][1] → a[0][0][2] → a[0][0][3] → a[0][1][0] → a[0][
 <blockquote>
 <p>对两个字符串比较不能直接用arrayName1&gt;arrayName2进行比较，因为arrayName1和arrayName2代表地址而不代表数组中全部元素，而只能用 (strcmp(arrayName1，arrayName2)&gt;0)实现，系统分别找到两个字符数组的第一个元素，然后顺序比较数组中各个元素的值。</p>
 </blockquote>
-<h6 id="字符串比较函数-strlen">字符串比较函数 strlen()</h6>
+<h6 id="测字符串长度的函数-strlen">测字符串长度的函数 strlen()</h6>
 <p><code>strlen</code> 是string length的缩写，<code>strlen（）</code> 是字符串长度的函数。函数的返回值为字符串中的实际长度(不包括′\0′在内)。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> str[<span class="hljs-number">10</span>]=<span class="hljs-string">&quot;China&quot;</span>;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d,%d\n&quot;</span>,<span class="hljs-built_in">strlen</span>(str),<span class="hljs-built_in">strlen</span>(<span class="hljs-string">&quot;China&quot;</span>));<br><br></code></pre></td></tr></table></figure>
 <h6 id="转换为大小写的函数">转换为大小写的函数</h6>
