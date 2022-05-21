@@ -16,16 +16,16 @@
   <meta name="author" content="Shiqi Bai">
   <meta name="keywords" content="">
   
-    <meta name="description" content="If you have a procedure with 10 parameters, you probably missed some. [1] 函数 why functions? 函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。 我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 main 函数的构">
+    <meta name="description" content="If you have a procedure with 10 parameters, you probably missed some. [1] 函数 引言 函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。 我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 main 函数的构成以及各部分的功能。但我">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c-programming-chap7">
 <meta property="og:url" content="http://example.com/2022/03/15/c-programming-chap7/index.html">
 <meta property="og:site_name" content="TinyWhispery">
-<meta property="og:description" content="If you have a procedure with 10 parameters, you probably missed some. [1] 函数 why functions? 函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。 我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 main 函数的构">
+<meta property="og:description" content="If you have a procedure with 10 parameters, you probably missed some. [1] 函数 引言 函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。 我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 main 函数的构成以及各部分的功能。但我">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/tech.jpeg">
 <meta property="article:published_time" content="2022-03-15T02:16:46.000Z">
-<meta property="article:modified_time" content="2022-04-01T14:26:07.112Z">
+<meta property="article:modified_time" content="2022-05-21T03:53:59.906Z">
 <meta property="article:author" content="Shiqi Bai">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/tech.jpeg">
@@ -198,7 +198,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.1k 字
+      7.2k 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      59 分钟
+      60 分钟
     </span>
   
 
@@ -242,12 +242,30 @@
               <p><em>If you have a procedure with 10 parameters, you probably missed some.</em> <sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="如果你写了一个需要10个参数的函数，你或许还漏了什么。Epigrams on Programming 编程警句 
 ">[1]</span></a></sup></p>
 <h2 id="函数">函数</h2>
-<h3 id="why-functions">why functions?</h3>
+<h3 id="引言">引言</h3>
 <p>函数这个概念源自数学。在其他语言中，函数也叫方法，过程等。所以，编程中函数与数学中的函数是不同的。</p>
 <p>我们早在第二章就接触到函数这一概念—— main 函数。当时我煞费苦心的尝试用通俗的话向你们解释 main 函数的构成以及各部分的功能。但我们刚开始学编程，对函数一定不能有一个比较深刻的认识。这一节，我将带领大家走进函数，仔细推敲品味函数。从这一节开始，使用函数的思想将会伴随我们今后的编程生涯。</p>
-<p>一个程序可以实现很多复杂的功能，然而如果将所有的功能写在一个 main 函数中，显然是不科学的。大型程序的代码肯定不是几十行的事情，如果这样做，会让你在写代码和修改 bug 时崩溃。退一步说，对于一个项目来说，肯定时多人合作共同编写，都写在 main 函数内，就很僵硬了。</p>
-<p>所以，函数就是一个子程序，它可以将我们的程序<strong>模块化</strong>，不同的函数实现不同的功能，然后再通过一定的方法让它们有机结合起来。将程序模块化，还可以减少不必要的重复——不用重复编写功能相同的代码。</p>
 <p>这一章，会教你如何编写函数，并且更加深入的理解 main 函数本身。</p>
+<p><img src="/2022/03/15/c-programming-chap7/WX20220521-113759@2x.png" srcset="/img/loading.gif" lazyload alt="不使用函数VS使用函数"></p>
+<p>####为什么要使用函数</p>
+<ol>
+<li>一个C程序由一个或多个程序模块组成，每一个程序模块作为一个源程序文件。较大的程序，可分别放在若干个源文件中。这样便于分别编写和编译，提高调试效率。一个源程序文件可以为多个C程序共用。</li>
+<li>一个源程序文件由一个或多个函数以及其他有关内容（如指令、数据声明与定义等）组成。一个源程序文件是一个编译单位，在程序编译时是以源程序文件为单位进行编译的，而不是以函数为单位进行编译的。</li>
+<li>C程序的执行是从main函数开始的，如果在main函数中调用其他函数，在调用后流程返回到main函数，在main函数中结束整个程序的运行。</li>
+<li>所有函数都是平行的，即在定义函数时是分别进行的，是互相独立的。一个函数并不从属于另一个函数，即函数不能嵌套定义。<strong>函数间可以互相调用，但不能调用main函数。main函数是被操作系统调用的。</strong></li>
+<li>从用户使用的角度看，函数有两种。</li>
+</ol>
+<ul>
+<li>库函数，它是由系统提供的，用户不必自己定义，可直接使用它们。应该说明，不同的C语言编译系统提供的库函数的数量和功能会有一些不同，当然许多基本的函数是共同的。</li>
+<li>用户自己定义的函数。它是用以解决用户专门需要的函数。</li>
+</ul>
+<ol start="6">
+<li>从函数的形式看，函数分两类。</li>
+</ol>
+<ul>
+<li>无参函数。在调用无参函数时，主调函数不向被调用函数传递数据。</li>
+<li>有参函数。在调用函数时，主调函数在调用被调用函数时，通过参数向被调用函数传递数据。</li>
+</ul>
 <h3 id="一-函数的定义和调用">一 函数的定义和调用</h3>
 <p>在介绍函数的定义之前，让我们先来看 3 个简单定义的函数。</p>
 <h4 id="1-3-个-简单的函数">1. 3 个 简单的函数</h4>
@@ -261,6 +279,14 @@
 <p>不是每个函数都有参数：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">print_pun</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;To C or not to C: that is a question\n&quot;</span>);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span>&#123;<br>    <br>    print_pun();<br>   <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h4 id="2-函数定义">2. 函数定义</h4>
+<p>C语言要求，在程序中用到的所有函数，必须 <strong>“先定义，后使用”</strong>。</p>
+<p>定义函数应包括以下几个内容:</p>
+<ol>
+<li>指定函数的名字，以便以后按名调用。</li>
+<li>指定函数的类型，即函数返回值的类型。</li>
+<li>指定函数的参数的名字和类型，以便在调用函数时向它们传递数据。对无参函数不需要这项。</li>
+<li>指定函数应当完成什么操作，也就是函数是做什么的，即函数的功能。这是最重要的，是在函数体中解决的。</li>
+</ol>
 <h5 id="无参函数">无参函数</h5>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">返回类型 函数名()&#123;<br>    声明<br>    语句<br>&#125;<br></code></pre></td></tr></table></figure>
 <h5 id="有参函数">有参函数</h5>
@@ -289,35 +315,27 @@
 <p>形参和实参的功能是传递数据，发生函数调用时，实参的值会传递给形参。<br>
 每个形式参数前需要写明其类型，形参之间用逗号隔开。</p>
 </blockquote>
+<h5 id="形参实参举例">形参实参举例</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;	<span class="hljs-type">int</span> <span class="hljs-title function_">max</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> y)</span>;		<span class="hljs-comment">//对max函数的声明</span><br>	<span class="hljs-type">int</span> a,b,c;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;please enter two integer numbers:&quot;</span>);  <span class="hljs-comment">//提示输入数据</span><br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d,%d&quot;</span>,&amp;a,&amp;b);	<span class="hljs-comment">//输入两个整数</span><br>	c=max(a,b);	<span class="hljs-comment">//调用max函数，有两个实参。大数赋给变量c</span><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;max is %d\n&quot;</span>,c);	<span class="hljs-comment">//输出大数c</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; &#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">max</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> y)</span>	<span class="hljs-comment">//定义max函数，有两个参数</span><br>&#123;<br>	<span class="hljs-type">int</span> z;		<span class="hljs-comment">//定义临时变量z</span><br>	z=x&gt;y?x:y;	<span class="hljs-comment">//把x和y中大者赋给z</span><br>	<span class="hljs-keyword">return</span>(z);		<span class="hljs-comment">//把z作为max函数的值带回main函数</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p><img src="/2022/03/15/c-programming-chap7/WX20220521-114450@2x.png" srcset="/img/loading.gif" lazyload alt="数据传递"></p>
+<blockquote>
+<ol>
+<li>定义函数，名为max，函数类型为int。指定两个形参x和y，形参的类型为int。</li>
+<li>主函数中包含了一个函数调用max(a,b)。</li>
+</ol>
+<ul>
+<li>max后面括号内的a和b是实参。</li>
+<li>a和b是在main函数中定义的变量，x和y是函数max的形式参数。</li>
+<li>通过函数调用，在两个函数之间发生数据传递，实参a和b的值传递给形参x和y，在max函数中把x和y中的大者赋给变量z，z的值作为函数值返回main函数，赋给变量c。</li>
+</ul>
+</blockquote>
+<hr>
+<p>在调用函数过程中发生的实参与形参间的数据传递称为“虚实结合”。</p>
 <h4 id="4-函数调用">4. 函数调用</h4>
 <blockquote>
 <p>函数调用由函数名和实参列表组成，实参列表用圆括号括起来：</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">average(x, y);<br>print_count(i);<br>print_pun();<br></code></pre></td></tr></table></figure>
-<p>返回值非 void 的函数会产生一个值，该值可以存储在变量中，还可以进行测试，显示或者其他用途。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">avg = average(x, y);<br><span class="hljs-keyword">if</span>(avg &gt; <span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Average is positive\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>如果不需要非 void 函数返回的值，总可以将其丢弃：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">average(x, y); <span class="hljs-comment">// discard return value</span><br></code></pre></td></tr></table></figure>
-<p>average 函数的这个调用就是一个表达式语句的例子：计算出结果，但是不保存它</p>
-<p>有时候我们可以直接将函数调用产生的结果当做 printf 函数的参数：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%f&quot;</span>, average(x, y));<br></code></pre></td></tr></table></figure>
-<p>这种做法其实也是丢弃了 average 的返回值。</p>
-<p>说到丢弃返回值，我们最常用的两个函数 <code>printf</code> 和 <code>scanf</code>也是有返回值的：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">num_chars = <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!\n&quot;</span>); <span class="hljs-comment">// num_chars is now 13</span><br></code></pre></td></tr></table></figure>
-<p>我们看看 MSDN 中对 printf 返回值的描述：</p>
-<blockquote>
-<p>The function returns <strong>the number of characters</strong> printed, or a  negative value if an error occurs.</p>
-</blockquote>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">num = <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;i);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, num); <span class="hljs-comment">// 1</span><br><br>num = <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>, str);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, num); <span class="hljs-comment">// 1</span><br></code></pre></td></tr></table></figure>
-<p>我们看看 MSDN 中对 scanf 返回值的描述：</p>
-<blockquote>
-<p><strong>scanf</strong> return <strong>the number of fields</strong> successfully  converted and assigned; the return value does not include fields that were read  but not assigned. A return value of 0 indicates that no fields were assigned.</p>
-</blockquote>
-<br>
-<p>为了清楚的表明函数的返回值是被故意丢弃的，C 语言通常允许在函数调用前加上 <code>void</code>:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">(<span class="hljs-type">void</span>)<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World!\n&quot;</span>);<br></code></pre></td></tr></table></figure>
-<p>如此一来，printf 函数的返回值强制类型转换成 void 类型。</p>
-<p>但是，C 语言库中大量函数的返回值通常都会被丢掉；在调用它们时都使用 (void) 会很麻烦，所以我们一般不这么写。</p>
 <h4 id="程序：判断素数">程序：判断素数</h4>
 <p>编写程序提示用户录入数，然后给出一条信息说明此数是否为素数。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">Enter a number: <span class="hljs-number">24</span><br>Not prime<br></code></pre></td></tr></table></figure>
@@ -338,7 +356,7 @@
 <blockquote>
 <p>C99中遵循这样的规则：再调用一个函数之前，必须先对其进行声明或定义。如果没有声明而直接调用，会导致出错。</p>
 </blockquote>
-<h3 id="三-实际参数">三 实际参数</h3>
+<h3 id="三-实参形参应用">三 实参形参应用</h3>
 <blockquote>
 <p><strong>形式参数：</strong>(parameter) 出现再函数的定义中</p>
 <p><strong>实际参数：</strong>（argument）出现在函数调用中的表达式。</p>
@@ -353,8 +371,8 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">sum_array(a[], len); <span class="hljs-comment">//error</span><br></code></pre></td></tr></table></figure>
 <p><strong>注意2：</strong> 虽然可以用运算符 <code>sizeof</code>计算出数组变量的长度，但是它无法给出数组类型的形式参数长度的正确答案：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">f</span><span class="hljs-params">(<span class="hljs-type">int</span> a[])</span>&#123;<br>    <br>    <span class="hljs-type">int</span> len = <span class="hljs-keyword">sizeof</span>(a) / <span class="hljs-keyword">sizeof</span>(a[<span class="hljs-number">0</span>]);<br>  	...;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h5 id="数组变量作为函数参数的特性">数组变量作为函数参数的特性</h5>
-<p><strong>1)数组无法检测传入的数组长度是否正确</strong>，所以：</p>
+<h5 id="数组变量作为函数参数的特性-【了解即可】">数组变量作为函数参数的特性 【了解即可】</h5>
+<p><strong>1) 数组无法检测传入的数组长度是否正确</strong>，所以：</p>
 <ul>
 <li>
 <p>一个数组有 100 个元素，但是实际仅仅使用 50 个元素，实参可以只写 50：</p>
