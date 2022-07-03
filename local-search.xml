@@ -4,6 +4,29 @@
   
   
   <entry>
+    <title>2021-2022-summer-coding-skill-camp</title>
+    <link href="/2022/07/03/2021-2022-summer-coding-skill-camp/"/>
+    <url>/2022/07/03/2021-2022-summer-coding-skill-camp/</url>
+    
+    <content type="html"><![CDATA[<h2 id="编程能力提升">编程能力提升</h2><p>基于C语言，利用<strong>leetcode</strong>题库提升coding能力！</p><h3 id="什么是leetcode？">什么是leetcode？</h3><p>LeetCode是一个为用户编程训练的oj(online judge,下同)平台网站，上面有各种数据结构，算法类型标签的编程习题，用户可以在该网站上面根据规范模式给出编程问题，进行代码编写，提交给网站后台后进行数据用例判断，如果所有数据用例都通过，则说明提交的代码基本上没有逻辑错误（除非网站的测试数据用例不够精准).</p><p>LeetCode.cn是LeetCode的中国服务商提供的已经奖题目完全汉化的版本，用户也可以在上面找到国内各大互联网公司的面试题目，总之，LeetCode是准程序员为面试复习刷题的不二首选。</p><blockquote><p>中文版leetcode[力扣]收集了各大互联网大厂的笔试题， 希望各位同学踊跃刷题！</p></blockquote><h2 id="课程进行模式">课程进行模式</h2><ol><li>全班同学组队进行，每组5人 <strong>[允许一个三人组存在！]</strong></li><li>以LeetCode题目为基础，每个小组合作当堂完成完成5-6道题目 <strong>[不设上限]</strong>，每道题目有同学上台讲解，并获得相应的团队积分！</li><li>个人积分由LD通过提交数决定！</li></ol><p><img src="/2022/07/03/2021-2022-summer-coding-skill-camp/16568294080498.jpg" alt></p><h2 id="成绩计算">成绩计算</h2><ol><li>最终个人成绩 = 个人积分*0.4 + 团队积分*0.6</li><li>最终成绩6名的同学下学期的CS专业英语可获得期末考免考权。</li><li>其余同学的最终个人成绩将换算为CS专业英语的部分平时成绩！</li></ol>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>夏季学期</tag>
+      
+      <tag>C语言</tag>
+      
+      <tag>编程能力提升</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>四六级考试、英语学习经验分享</title>
     <link href="/2022/06/26/cet-test-sharing/"/>
     <url>/2022/06/26/cet-test-sharing/</url>
@@ -54,9 +77,9 @@
     
     <tags>
       
-      <tag>课程</tag>
-      
       <tag>C语言</tag>
+      
+      <tag>课程</tag>
       
     </tags>
     
@@ -75,9 +98,9 @@
     
     <tags>
       
-      <tag>课程</tag>
-      
       <tag>C语言</tag>
+      
+      <tag>课程</tag>
       
     </tags>
     
